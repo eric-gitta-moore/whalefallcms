@@ -1,0 +1,38 @@
+{extend name="common/base1"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+{/block}
+
+{block name="subnav"}
+<div class="navbar flt">
+    <nav class="tab-box">
+        <div class="item">
+            <a href="{:url('index/bookcase/index')}">收藏</a>
+        </div>
+        <div class="item">
+            <a href="{:url('index/bookcase/history')}" class="active">历史</a>
+        </div>
+    </nav>
+    <div class="action">
+        <span id="edit_btn">编辑</span>
+    </div>
+</div>
+{/block}
+
+{block name="content"}
+
+<div class="bs-box" style="margin-bottom: 0px;bottom: 1.333rem;">
+    <div class="common-ne">
+        <div class="subject">您还没有收藏记录</div>
+        <div class="action">
+            <a href="/" class="btn">去找几本看看</a>
+        </div>
+    </div>
+</div>
+
+
+{include file="bookcase/delete_toolbar"}
+
+
+{/block}

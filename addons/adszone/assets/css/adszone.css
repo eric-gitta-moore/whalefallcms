@@ -1,0 +1,32 @@
+@import url("../../../libs/font-awesome/css/font-awesome.min.css");
+html,
+body {
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #f4f6f8;
+    font-size: 14px;
+    color: #616161;
+}
+.container { max-width: 960px; margin: 0 auto;}
+.container h4{ font-size: 16px; margin-top: 30px; color: #555555; font-weight: bold;}
+.page-header{ margin-bottom: 10px;}
+.intro{ color: #999999; padding-left: 30px;}
+.fl{ float: left;}
+.fr{ float:right;}
+
+.code_demo{  padding-left: 20px; line-height: 2em; margin-top: 10px;}
+.code_demo p.desc{ color: #333333;}
+.code_demo p.code{ color: #555555; padding:20px;background: #f0f0f0;}
+.code_demo p.code .note{ color: #999999;}
+
+.ads_demo{ margin-top: 30px;}
+.ads_demo .button{ padding: 15px 0;  }
+.ads_demo .button button{background:#2D93CA; border: none; height:32px; line-height: 32px; padding: 0 10px; color: #ffffff;   }
+.ads_demo .button button:hover{ background: #999999;}
+.ads_demo .tips{ color: #2D93CA; padding: 15px 20px;}
+.ads_demo .ads_box{ border: 2px teal solid; padding: 30px;}

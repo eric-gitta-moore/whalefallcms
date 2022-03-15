@@ -1,0 +1,234 @@
+{extend name="common/base1"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+<style>
+    .user-notice-l{width:25%;float:left;height:30px;line-height:30px;}
+    .user-notice-r{color:#928c8c;width:75%;float:left}
+</style>
+{/block}
+
+{block name="content"}
+<div class="uh-box">
+    <img src="__STATIC_PATH__/images/center/ubg.png" class="bg">
+    <div class="container">
+        <div class="avatar">
+            <input type="file" name="file" class="file" style="display:none;"/>
+            <img width="65" height="65" id="showheadimg" src="{$user.avatar}" />
+            {if $user['group_id']!=1 && $user['group_id']!=$site['group_agent_id']}
+                <div class="deco">
+                    <label class="rank">VIP</label>
+                </div>
+            {elseif $user['group_id']==$site['group_agent_id']}
+                <div class="deco">
+                    <label class="rank">代理</label>
+                </div>
+            {/if}
+        </div>
+        <div class="body">
+            <div class="title">{$user.nickname}</div>
+            <div class="text">
+                <span style="display: block;">ID：{$user.id}</span>
+                {if $user['group_id']!=1 && $user['group_id']!=$site['group_agent_id']}
+                    <span style="display: block;">VIP到期时间：{:isset($user['usergroup']['expiredtime'])?datetime($user['usergroup']['expiredtime']):'永久'}</span>
+                {elseif $user['group_id']==$site['group_agent_id']}
+                    <span style="display: block;">代理到期时间：{:isset($user['usergroup']['expiredtime'])?datetime($user['usergroup']['expiredtime']):'永久'}</span>
+                {else /}
+                    <span style="display: block;">开通VIP权益享受更多权益!</span>
+                {/if}
+            </div>
+        </div>
+
+        <div class="action">
+            <a href="{:url('index/withdraw/withdraw')}" class="btn btn-sign" style="color:#2196F3">申请提现</a>
+        </div>
+        <div class="action">
+            {if $is_sign}
+                <a href="{:url('index/signin/index')}" id="sign_ok" class="btn btn-sign" style="color:#FF5722">已签到</a>
+            {else /}
+                <a href="{:url('index/signin/index')}" class="btn btn-sign" style="color:#2196F3">签到</a>
+            {/if}
+        </div>
+    </div>
+</div>
+
+<div class="uh-row" style="position: relative;">
+    <div class="col" >
+        <div class="num">{$user.score|floatval}</div>
+        <div class="title">书币</div>
+    </div>
+    <div class="col" >
+        <div class="num today-bean">{$user.money|floatval}</div>
+        <div class="title">金额</div>
+    </div>
+</div>
+
+<div class="user-notice mt-10">
+    <div class="user-notice-l fl">
+        <i class="glyphicon glyphicon-volume-up"></i>&nbsp;&nbsp;&nbsp;最新公告：
+    </div>
+    <div class="user-notice-r fl">
+        <marquee behavior="scroll" direction="left" style="color: #EC5C11;font-weight: bold;width: 100%;height: 30px;font-size: 14px;line-height: 30px;" scrollamount="3">{$site.center_notice}</marquee>
+    </div>
+</div>
+
+{//菜单列表}
+<div class="uh-nav mb-10" style="clear:both">
+    <div class="item tl">
+        <a class="link">
+            <i class="new-icon-all"></i>
+            <div class="title">自动购买下一章节</div>
+            <div class="text">
+                <span id="auto_pay_btn" class="switch-{:session('auto_pay')?'on':'off'}" style="vertical-align: middle;"></span>
+            </div>
+        </a>
+    </div>
+
+    <div class="item mt-10">
+        <a class="link">
+            <i class="new-icon-account"></i>
+            <div class="title">我的账户</div>
+        </a>
+        <div class="action">
+            <a href="{:url('/index/recharge/recharge')}" class="btn">立即充值</a>
+        </div>
+    </div>
+
+    <div class="item tl">
+        <a href="{:url('index/qnbuygroup.buygroup/buy')}" class="link">
+            <i class="new-icon-vip"></i>
+            <div class="title">开通VIP</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="item tl">
+        <a href="{:url('/index/exchange/exchange')}" class="link">
+            <i class="new-icon-exchange"></i>
+            <div class="title">{$site.score_name}兑换</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+
+    {if $user -> agent_switch == 1}
+    <div class="item mt-10">
+        <a href="{:url('user/index/index')}" class="link">
+            <i class="new-icon-agent"></i>
+            <div class="title">代理后台</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+    {/if}
+
+    <div class="item tl">
+        <a href="{:url('/index/withdraw/withdraw')}" class="link">
+            <i class="new-icon-balance-withdraw"></i>
+            <div class="title">余额提现</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="item tl">
+        <a href="{:url('/index/withdraw/withdrawlog')}" class="link">
+            <i class="new-icon-balance-detail"></i>
+            <div class="title">提现记录</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="item tl">
+        <a href="{:url('/index/recharge/moneylog')}" class="link">
+            <i class="new-icon-withdraw"></i>
+            <div class="title">余额明细</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="item tl">
+        <a href="{:url('index/message/index')}" class="link">
+            <i class="new-icon-message"></i>
+            <div class="title">我的消息</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="item tl">
+        <a href="{:url('index/invite/index')}" class="link">
+            <i class="new-icon-recommend"></i>
+            <div class="title">推广返利</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+
+    {php}/*
+    <div class="item tl">
+        <a href="{:url('index/user/bind')}" class="link">
+            <i class="new-icon-phone"></i>
+            <div class="title">绑定手机号</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="item tl">
+        <a href="{:url('index/user/feedback')}" class="link">
+            <i class="new-icon-suggest"></i>
+            <div class="title">建议反馈</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+    */{/php}
+
+    <div class="item tl">
+        <a href="{:url('index/user/help')}" class="link">
+            <i class="new-icon-service"></i>
+            <div class="title">客服帮助</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+
+    {if $is_login}
+    <div class="item mt-10">
+        <a id="logout" class="link">
+            <i class="new-icon-logout"></i>
+            <div class="title">退出</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+    {else /}
+    <div class="item mt-10">
+        <a href="{:url('index/user/login')}" class="link">
+            <i class="icon-money"></i>
+            <div class="title">登录</div>
+            <div class="text">
+                <i></i>
+            </div>
+        </a>
+    </div>
+    {/if}
+</div>
+
+{/block}

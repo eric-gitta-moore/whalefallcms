@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="__STATIC_PATH__/css/buychapter.css">
+<div class="reader-chapter-order">
+    <div class="elevation-10 margin-vertical-lg card">
+        <div class="card-header">
+            <div>
+                <p>本章价格：{$chapter.money}{$site.score_name}</p>
+                <p><small>开通VIP，海量漫画免费看</small></p>
+            </div>
+        </div>
+        <div class="card-content card-content-padding">
+            <div class="list">
+                <ul>
+                    <li class="">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div>自动购买下一章节</div>
+                                <label class="toggle">
+                                    <input type="checkbox" style="display: none;">
+                                    <span class="toggle-icon"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="item-content">
+                            <div class="item-inner"><a class="button-red" id="buy_btn">单独购买本章节</a></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-footer"><a class="link"><span class="text-color-gray font-size-12" style="vertical-align: middle;">余额：{:isset($user_info['score'])?$user_info['score']:0}{$site.score_name}</span></a>
+            <div class="display-flex">
+                <a class="link" href="{:url('index/qnbuygroup.buygroup/buy')}">
+                    <span class="font-size-12 text-underline">开通VIP，免费阅读</span>
+                </a>
+                <span class="font-size-12 line-height-3x"> / </span>
+                <a class="link">
+                    <span class="font-size-12 text-underline" id="share_btn">分享赚书币</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

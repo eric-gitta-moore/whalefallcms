@@ -1,0 +1,64 @@
+{extend name="common/common/base"}
+
+{block name="header"}
+<link href="__STATIC_PATH__/css/base.css?v={$site.version}" rel="stylesheet" type="text/css">
+{//辅助js}
+<script>
+    var orderby = 'recommend';
+</script>
+{/block}
+
+{block name="content"}
+<main id="left">
+
+    <header>
+        {//页头选项}
+        {include file="common/common/head_switch"}
+
+        {//顶部搜索}
+        {include file="common/common/head_search"}
+    </header>
+
+    {//轮播图}
+    <section class="focusbox focushot bt5" style="border-bottom:0px;">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+
+                {foreach :getCodeAd($module . '_rank_images')['data'] as $vo}
+                <div class="swiper-slide">
+                    <a href="{$vo.linkurl}">
+                        <img src="{$vo.imageurl}" width="100%" height="100%" alt="{$vo.title}">
+                    </a>
+                </div>
+                {/foreach}
+
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+
+    {//排行榜选项卡}
+    <section class="block">
+        <div class="tabBar clf">
+            <a class="fl taboff selected" id="recommend" data-num="1" href="javascript:void(0);">推荐榜</a>
+            <a class="fl taboff" id="log_time" data-num="1" href="javascript:void(0);">新番榜</a>
+            <a class="fl taboff" id="readnum" data-num="1" href="javascript:void(0);">热门榜</a>
+            <a class="fl taboff" id="collectnum" data-num="1" href="javascript:void(0);">收藏榜</a>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+
+    <section class="block qhlist">
+        <div class="book_list clf">
+            <div id="dataList" class="data-list">
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+
+
+</main>
+<div class="clearfix"></div>
+
+{/block}

@@ -1,0 +1,59 @@
+<style>
+    .statistics h5 {
+        margin: 0;
+        padding: 15px 0;
+        font-size: 16px;
+        color: #616161;
+    }
+
+    .statistics > div {
+        padding: 0 10px;
+    }
+
+    .statistics .panel-body span {
+        font-size: 16px;
+        font-family: Arial, verdana, tahoma;
+    }
+
+    .panel-statistics h5 {
+        padding-bottom: 0px;
+        font-weight: 500;
+    }
+
+    .charts h2, .orders h2 {
+        font-size: 16px;
+    }
+
+    .orders .nav-tabs > li > a {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .orders .nav-tabs > li.active > a, .orders .nav-tabs > li.active > a:hover, .orders .nav-tabs > li.active > a:focus {
+        border-color: transparent;
+        border-bottom-color: #0084ff;
+        color: #444;
+    }
+
+    .orders .nav > li > a:hover, .orders .nav > li > a:active, .orders .nav > li > a:focus {
+        background: none;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+    }
+</style>
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-default orders" style="min-height: 300px">
+                <div class="panel-body mt-2" style="padding:0;">
+                    <div class="table-responsive mt-2" style="color: #616161;padding-top:15px;font-size:13px;border:none;">
+                        <h2>{$row.messagenotice.message_title}</h2>
+                        {$row.messagenotice.message_content}
+                        <p style="color: #999">{:date('Y-m-d H:i',$row.createtime)}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

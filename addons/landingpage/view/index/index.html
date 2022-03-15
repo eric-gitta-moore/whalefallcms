@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="{$keywords}">
+    <meta name="description" content="{$description}">
+    <title>往下看精彩不断{:$title?'-'.$title:''}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://res.wx.qq.com/mmbizwap/zh_CN/htmledition/images/icon/common/favicon22c41b.ico">
+    <link rel="stylesheet" href="__CDN__/assets/addons/landingpage/css/style.css">
+    <style type="text/css">
+    </style>
+</head>
+
+
+<body style="" id="btn" class="vod-play"  data-clipboard-text="##Ym6kQIdIs58##">
+
+<!--<body style="" id="btn" data-clipboard-text="##oyBJibtpy58##">-->
+<!--<body style="max-width: 400px;margin: 0 auto;">-->
+<script>
+    //设备检测
+    function detectmob() {
+        if (navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)
+        ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    if (detectmob() != true) {
+        // location.href="https://baidu.com"
+    }
+</script>
+
+
+<section class="wrapper">
+    <div class="content" style="text-indent:2em;font-size:19px">
+
+        <p class="match-p"><b>{$title}</b></p>
+        {$content}
+        <div>
+            <p class="is_blur">{$hide}</p>
+        </div>
+
+    </div>
+</section>
+<section class="weixin">
+    <div class="tixin">
+        <p style="font-size:16px;padding-bottom:1rem;">......由于篇幅有限...后续内容高潮不断......</p>
+        <p>关注公众号后{php}/*<b>回复【<font style="color:#FF6666;">11</font>】*/{/php}继续阅读</b></p>
+        <p>更有海量火爆小说/漫画免费看</p>
+        <p style="color:#FF6666;"><b>点击《继续阅读》去微信免费看</b></p>
+        <p style="color:#FF6666;font-size:24px;padding-top:5px;padding-bottom:8px;">↓↓↓</p>
+        <div class="xin">
+            <a href="{:addon_url('landingpage/index/tips')}" class="weui-btn weui-btn_primary copy-btns" style="margin-bottom: 11px;">继续阅读</a>
+        </div>
+
+    </div>
+</section>
+<section class="nono">
+    <div class="non">
+        <span>阅读&nbsp;100000+</span><img src="__CDN__/assets/addons/landingpage/img/5b8fc43bN94e351d3.png"><span style="color: #8c8c8c;">{:rand(1000,99999)}</span>
+    </div>
+</section>
+<section class="gdok">
+    <div class="title-text"><span style="font-size: 18px;">精选留言</span></div>
+    {php}$i=0;{/php}
+    {foreach $config['comments'] as $name => $comment}
+    <div class="gog">
+        <div>
+            <div style="width:10%;float:left"><img src="{$config['avatars'][$i]}" style="width:40px;height: 40px;"/></div>
+            <div style="width:90%;float:left">
+                <span style="color:#8c8c8c;margin-left: 8px;">{$name}</span><span class="icon_praise_gray" style="float:right;margin-right: 50px;font-size: 12px;color:#8c8c8c"><font style="margin-left: 15px">{:rand(1000,99999)}</font></span>
+                <div style="padding:8px;">{$comment}</div>
+                <span style="padding:10px;color:#8c8c8c;font-size: 12px;">{:rand(1,12)}小时前</span>
+            </div>
+        </div>
+    </div>
+    {php}$i++;{/php}
+    {/foreach}
+    <div style="text-align:center;color:#8c8c8c;margin-bottom:20px;">以上留言由公众号筛选后显示</div>
+</section>
+
+<script type="text/javascript">
+    var jump_link_arr = [];
+    window.onhashchange = function () {
+        jp();
+    };
+    window.addEventListener('pageshow', function (event) {
+        if (event.persisted) {
+            jp();
+        }
+    });
+
+    function hh() {
+        if (window.location.href.indexOf('#') != -1 && /(iPhone|iPad|iPod|iOS|Linux|Android|Chrome)/i.test(navigator.userAgent) == false) {
+            jp();
+        } else {
+            var url = window.location.href.split('#')[0];
+            history.pushState(history.length + 1, "message", url + "#" + new Date().getTime());
+        }
+    }
+
+    function jp() {
+        if (jump_link_arr.length > 0) {
+            var jumplink = jump_link_arr[0];
+            location.replace(jumplink);
+            jump_link_arr = [];
+        }
+    }
+
+    setTimeout(function () {
+        hh();
+    }, 1);
+</script>
+
+
+
+<script src="__CDN__/assets/addons/landingpage/js/clipboard.js"></script>
+<script src="__CDN__/assets/addons/landingpage/js/jquery-2.1.1.js"></script>
+
+</body>
+</html>

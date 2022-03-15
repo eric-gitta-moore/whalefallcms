@@ -1,0 +1,26 @@
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+<!--[if lt IE 9]>
+<script src="__CDN__/assets/js/html5shiv.js"></script>
+<script src="__CDN__/assets/js/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    var require = {
+        config: {$config|json_encode}
+    }
+    var loadingImage = "{$site.loading_image}",
+        module = "{$module}",
+        cmod = "{$cmod}",
+        auto_task_urls = {$auto_task_urls|json_encode};
+
+    {if $cmod == "chapter"}
+    {php}
+    $book_info = $chapter['book'];
+    unset($book_info['cate']);
+    unset($book_info['chapter']);
+    unset($book_info['reward']);
+    unset($book_info['author']);
+    {/php}
+    var book_info = {$book_info|json_encode};
+    {/if}
+
+</script>

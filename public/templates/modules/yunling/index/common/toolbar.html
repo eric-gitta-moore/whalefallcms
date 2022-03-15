@@ -1,0 +1,11 @@
+<div class="book-bar">
+    <div class="inner">
+        <div class="body">
+            <span class="chapter">{:count($detail['chapter'])?$detail['chapter'][count($detail['chapter'])-1]['name']:'暂无'}</span>
+            <span class="title">更新：{:count($detail['chapter'])?$detail['chapter'][count($detail['chapter'])-1]['log_time_text']:'暂无'}</span>
+        </div>
+        <div class="action">
+            <a href="{:url('index/' . $module . '.chapter/show',['id' => count($detail['chapter'])?$detail['chapter'][count($detail['chapter'])-1]['id']:-1 ] ) }" class="btn">开始阅读</a>
+        </div>
+    </div>
+</div>

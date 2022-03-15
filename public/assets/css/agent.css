@@ -1,0 +1,117 @@
+.y-panel-body {
+    padding: 10px 12px;
+    margin-top: 5px;
+    min-width: 320px;
+}
+.y-panel-body-box {
+    margin: 0;
+    min-width: 297px;
+}
+.y-mianbox {
+    line-height: 28px;
+    border-radius: 6px;
+    height: 80px;
+    margin-top: 10px;
+    padding: 12px;
+    min-width: 297px;
+    border-bottom: 1px solid #ffe1b1;
+}
+.y-text-danger {
+    padding: 12px 0;
+}
+.y-panel-heading {
+    display: flex;
+    text-align: left;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 0;
+    position: relative;
+}
+.y-panel-left {
+    width: 100%;
+    text-align: center;
+}
+.y-panel-mian {
+    color: #fff;
+    font-size: 31px;
+    line-height: 33px;
+    margin-top: 5px;
+}
+.y-panel-bottom-mian {
+    width: 49.3%;
+    color: #e8e8e8;
+    float: left;
+    text-align: center;
+}
+.y-panel-middle {
+    float: left;
+    width: 1px;
+    height: 38px;
+    background: #f1f1f1;
+    margin-top: 4px;
+}
+.y-bottom-mian {
+    font-size: 18px;
+}
+.y-mianbox-top {
+    width: 56px;
+    float: left;
+}
+.y-mianbox-title {
+    font-size: 14px;
+    min-width: 78px;
+    color: #37a5fc;
+    float: left;
+    margin: 10px 6px;
+    text-align: left;
+}
+.y-mianbox-shuju {
+    font-size: 14px;
+    min-width: 70px;
+    float: right;
+    margin: 10px 0;
+    text-align: left;
+    color: #37a5fc;
+}
+.y-panel-body li {
+    list-style: none;
+}
+.amount {
+    height: 155px;
+    background: #fffaf6;
+    border-radius: 6px;
+    text-align: center;
+}
+.y-panel-bottom {
+    line-height: 24px;
+    height: 61px;
+    margin-top: 15px;
+}
+.y-mianbox-top li {
+    color: #ffffff;
+    font-size: 29px;
+    background: #ffe1b1;
+    border-radius: 400px;
+    padding: 14px;
+    font-weight: 900;
+}
+.y-mianbox-shuju li {
+    line-height: 20px;
+    text-align: right;
+    color: #666;
+}
+.y-mianbox-title li {
+    line-height: 20px;
+    color: #666;
+}
+.bg-gary {
+    background: #fff!important;
+    border: unset;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+.y-panel-mian-order {
+    width: 100%;
+    color: #e8e8e8;
+    float: left;
+    text-align: center;
+}

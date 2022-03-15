@@ -1,0 +1,332 @@
+
+<!--1920大海报示例，可以根据自己的实际情况，使用其他的轮播图插件或者效果-->
+<style>
+    ul,li{ list-style: none;}
+    .header{ position: relative; width: 100%; overflow: hidden;}
+    .header .slideBox{ position: absolute; left: 50%;}
+    .header .slideBox .hd{ z-index: 10; position: absolute; bottom: 20px; width: 100%; text-align: center;}
+    .header .slideBox .hd ul{ display: inline-block; text-align: center; margin: 0; padding: 0;}
+    .header .slideBox .hd ul li{ width: 60px; height: 4px;  background: #222222; text-indent: 9999px; overflow: hidden; display: inline-block; margin: 0 10px; cursor: pointer; }
+    .header .slideBox .hd ul li.on{ background: #ff0000;}
+    .header .slideBox .bd{ z-index: 9; position: relative;}
+
+</style>
+<header class="header"  style="height: {$ads_slide_01.height}px;">
+    <div id="slideBox" class="slideBox" style="width:{$ads_slide_01.width}px;height: {$ads_slide_01.height}px; margin-left: -{$ads_slide_01.width/2}px;">
+        <div class="hd">
+            <ul>
+                {if $ads_slide_01.data}
+                {foreach $ads_slide_01.data as $k=>$v }
+                <li>{$k+1}</li>
+                {/foreach}
+                {/if}
+            </ul>
+        </div>
+        <div class="bd">
+            <ul>
+                {if $ads_slide_01.data}
+                {foreach $ads_slide_01.data as $k=>$v }
+                <li><a href="{$v.linkurl}" target="{$v.target}"><img src="__CDN__{$v.imageurl}" width="{$ads_slide_01.width}" height="{$ads_slide_01.height}" /></a></li>
+                {/foreach}
+                {/if}
+            </ul>
+        </div>
+        <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+        <a class="prev" href="javascript:void(0)"></a>
+        <a class="next" href="javascript:void(0)"></a>
+    </div>
+    <script  type="text/javascript">
+        $(function () {
+            jQuery(".slideBox").slide({mainCell: ".bd ul", effect: "fold", autoPlay: true});
+        });
+    </script>
+</header>
+<!--1920大海报示例结束-->
+
+
+<div class="container">
+    <div class="col-lg-12">
+        <h2 class="page-header">
+            控制器调用广告位代码示例
+        </h2>
+
+        <h4>代码调用说明：</h4>
+        <div class="code_demo">
+            <p class="desc">1. 在控制器中use广告位插件的命名空间</p>
+            <p class="code">use addons\adszone\library\Adszone;//引用广告位管理工具</p>
+            <p class="desc">2. 在控制器中使用getAdsByMark方法或者getAdsById方法获取广告位信息</p>
+            <p class="code"><span class="note">//初始化广告位对象 </span>
+                <br/>$Adszone = new Adszone(); 
+                <br/><span class="note">//根据广告位标记获取广告位，其中“slide_01”是在后台创建的广告位唯一标记</span>
+                <br/>$ads_slide_01= $Adszone->getAdsByMark("slide_01");
+                <br/>$ads_image_01= $Adszone->getAdsByMark("image_01");
+                <br/><span class="note">//调用$this->view->assign方法将广告位数据传递到模板中</span>
+                <br/>$this->view->assign('ads_slide_01', $ads_slide_01);
+                <br/>$this->view->assign('ads_image_01', $ads_image_01);
+            </p>
+            <p class="desc">3. 在view模板中，通过“$ads_slide_02”变量，获取广告位的数据</p>
+            <p class="code">
+                <span class="note">&lt;!--使用var_export输出广告位信息，根据自己的实际情况，使用广告位的各项参数--&gt;</span>
+                <br/>{literal}{:var_export($ads_slide_02)}{/literal}</p>
+        </div>
+
+        <div class="col-lg-12">
+            <h2 class="page-header">
+                轮播/多图广告位示例
+            </h2>
+            <div class="intro">应用场景：网页中各种位置的轮播图，多图列表，轮播banner等</div>
+        </div>
+        <div class="col-lg-12">
+            <h4>轮播图广告应用：</h4>
+            <!--普通幻灯广告位示例，可以根据自己的实际情况，使用其他的轮播图插件或者效果-->
+            <style>
+                .ads_slide_02{ position: relative; overflow: hidden;}
+                .ads_slide_02 .hd{ position: absolute; right: 15px; bottom: 15px; text-align: center; z-index: 10;}
+                .ads_slide_02 .bd{  position: relative; z-index: 9;}
+                .ads_slide_02 .hd ul{ display: inline-block;}
+                .ads_slide_02 .hd ul li{  display: inline-block; width: 20px; height: 20px; border-radius: 20px; line-height: 20px; background:  #222222;  text-align: center; color: #ffffff; cursor: pointer;}
+                .ads_slide_02 .hd ul  li.on{ background: #ff0000;}
+            </style>
+            <div id="slideBox_{$ads_slide_02.id}" class="ads_slide_02" style=" width: {$ads_slide_02.width}px;">
+                <div class="hd">
+                    <ul>
+                        <!--{if $ads_slide_02.data}-->
+                        <!--{foreach $ads_slide_02.data as $k=>$v } -->
+                        <li>{$k+1}</li>
+                        <!--{/foreach}-->
+                         <!--{/if}-->
+                    </ul>
+                </div>
+                <div class="bd">
+                    <ul>
+                        <!--{if $ads_slide_02.data}-->
+                        <!--{foreach $ads_slide_02.data as $k=>$v } -->
+                        <li><a href="{$v.linkurl}" target="{$v.target}"><img src="__CDN__{$v.imageurl}" width="{$ads_slide_02.width}" height="{$ads_slide_02.height}" /></a></li>
+                        <!--{/foreach}-->
+                         <!--{/if}-->
+                    </ul>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    jQuery("#slideBox_{$ads_slide_02.id}").slide({mainCell: ".bd ul", effect: "fold", autoPlay: true});
+                });
+            </script>
+            <!--普通幻灯广告位示例结束-->
+
+
+            <h4>多图列表广告应用：</h4>
+            <div style="width: 490px; ">
+                <!--普通图片列表示例，可以根据自己的实际情况，使用其他的轮播图插件或者效果-->
+                <style>
+                    .ads_imgTable_01{}
+                    .ads_imgTable_01 ul{ zoom:1; margin: 0;margin-top: -20px; padding: 0; margin-left: -20px;}
+                    .ads_imgTable_01 ul:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+                    .ads_imgTable_01 ul li{ float: left; margin-left: 20px; margin-top: 20px;}
+                </style>
+                <div id="ads_imgTable_01" class="ads_imgTable_01">
+                    <ul>
+                        <!--{if $ads_imgTable_01.data}-->
+                        <!--{foreach $ads_imgTable_01.data as $k=>$v } -->
+                        <li><a href="{$v.linkurl}" target="{$v.target}"><img src="__CDN__{$v.imageurl}" width="{$ads_imgTable_01.width}" height="{$ads_imgTable_01.height}" /></a></li>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                    </ul>
+                </div>
+                <!--普通图片列表结束-->
+            </div>
+        </div>
+
+
+        <div class="col-lg-12">
+            <h2 class="page-header">
+                图片广告
+            </h2>
+            <div class="intro">应用场景：网页中各种位置的固定图片广告，需要用户自行修改的微信二维码，或者可能会被用户经常更换的图片，单图banner等</div>
+        </div>
+        <div class="col-lg-12">
+            <h4>控制器调用示例：</h4>
+            <div class="ads_demo">
+                 <!--{if $ads_image_01.data}-->
+                <div class="ads_image_01 ads_box"><a href="{$ads_image_01.data.linkurl}" target="{$ads_image_01.data.target}"><img src="__CDN__{$ads_image_01.data.imageurl}" width="{$ads_image_01.width}" height="{$ads_image_01.height}" /></a></div>
+                <!--{/if}-->
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <h4>接口调用示例：</h4>
+            <div class="code_demo">
+                <p class="desc">1. 在控制器中use广告位插件的命名空间</p>
+                <p class="code">
+                    &lt;div id="ads_image_01" class="ads_image_01"&gt;&lt;/div&gt;
+                    <br/>&lt;script type="text/javascript"&gt;
+                    <br/><span class="note">//调用“/api/adszone/getAdsByMark”接口，使用广告位的mark标识获取广告信息 </span>
+                    <br/>$.get("/api/adszone/getAdsByMark", 
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;{mark: "image_01"},
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;function (response) {
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (response.code == "1") {
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var asdData = response.data;
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="note"> //asdData是从接口获取到的广告位信息，将广告位信息绑定到网页中</span>
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var adsHtml = '&lt;a href="' + asdData.data.linkurl + '" target="' + asdData.data.target + '"&gt;&lt;img src="' + asdData.data.imageurl + '" width="' + asdData.width + '" height="' + asdData.height + '" /&gt;&lt;/a&gt;';
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$("#ads_image_01").html(adsHtml);
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(response.msg);
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;});
+                    <br/>&lt;/script&gt;
+                </p>
+            </div>
+            <div class="ads_demo">
+                <div class="button"><button id="get_ads_image_01">点击调用接口获取广告内容</button></div>
+                <div class="tips">点击按钮，载入代码广告的内容，广告代码会被加入到下面的DIV中</div>
+                <div id="ads_image_01" class="ads_image_01 ads_box"></div>
+                <script type="text/javascript">
+                    $(function () {
+                        $("#get_ads_image_01").click(function () {
+                            $.get("{:url('/api/adszone/getAdsByMark')}", {mark: "image_01"},
+                                    function (response) {
+                                        if (response.code == "1") {
+                                            var asdData = response.data;
+                                            //asdData是从接口获取到的广告位信息，将广告位信息绑定到网页中
+                                            var adsHtml = '<a href="' + asdData.data.linkurl + '" target="' + asdData.data.target + '"><img src="__CDN__' + asdData.data.imageurl + '" width="' + asdData.width + '" height="' + asdData.height + '" /></a>';
+                                            $("#ads_image_01").html(adsHtml);
+                                            //console.log(asdData);
+                                        } else {
+                                            console.log(response.msg);
+                                        }
+                                    });
+                        });
+
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <h2 class="page-header">
+                代码广告
+            </h2>
+            <div class="intro">应用场景：帮网站上加入广告联盟的广告代码，帮网站上加入第三方流量统计代码，帮网站上加入百度商桥，客服代码，自定义html/css/js等代码，让管理者可以直接在后台修改填写，不需要修改源文件</div>
+        </div>
+        <div class="col-lg-12">
+            <h4>控制器调用示例：</h4>
+            <div class="ads_demo">
+                <div class="adsCode_demo ads_box">{$ads_adsCode_01.code}</div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <h4>接口调用示例：</h4>
+            <div class="code_demo">
+                <p class="desc">1. 在控制器中use广告位插件的命名空间</p>
+                <p class="code">
+                    &lt;div id="adsCode_demo" class="adsCode_demo"&gt;&lt;/div&gt;
+                    <br/>&lt;script type="text/javascript"&gt;
+                    <br/><span class="note">//调用“/api/adszone/getAdsByMark”接口，使用广告位的mark标识获取广告信息 </span>
+                    <br/>$.get("/api/adszone/getAdsByMark", 
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;{mark: "adsCode_01"},
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;function (response) {
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (response.code == "1") {
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var asdData = response.data;
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="note"> //asdData是从接口获取到的广告位信息，将广告位信息绑定到网页中</span>
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $("#adsCode_demo").html(asdData.code);
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(response.msg);
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;});
+                    <br/>&lt;/script&gt;
+                </p>
+            </div>
+            <div class="ads_demo">
+                <div class="button"><button id="get_adsCode_demo">点击调用接口获取广告内容</button></div>
+                <div class="tips">点击按钮，载入代码广告的内容，广告代码会被加入到下面的DIV中</div>
+                <div class="adsCode_demo ads_box" id="adsCode_demo"></div>
+                <script type="text/javascript">
+                    $(function () {
+                        $("#get_adsCode_demo").click(function () {
+                            $.get("{:url('/api/adszone/getAdsByMark')}", {mark: "adsCode_01"},
+                                    function (response) {
+                                        if (response.code == "1") {
+                                            var asdData = response.data;
+                                            //asdData是从接口获取到的广告位信息，将广告位信息绑定到网页中
+                                            $("#adsCode_demo").html(asdData.code);
+                                            //console.log(asdData);
+                                        } else {
+                                            console.log(response.msg);
+                                        }
+                                    });
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $.get("{:url('/api/adszone/getAdsByMark')}", {mark: "slide_01"},
+                function (response) {
+                    if (response.code == "1") {
+                        var asdData = response.data;
+                        //asdData是从接口获取到的广告位信息，将广告位信息绑定到网页中
+                        console.log(asdData);
+                    } else {
+                        console.log(response.msg);
+                    }
+                }
+        );
+
+        /*
+         * ajax方法获取
+         $.ajax({
+         url: "/api/adszone/getAdsByMark",
+         data: {mark: "slide_01"},
+         type: "GET",
+         dataType: "json",
+         success: function (response, status, xhr) {
+         console.log(response);
+         }
+         });*/
+
+        /*
+         getAdsByMark("slide_01", function (response) {
+         //response是获取到的接口数据
+         if (response.code == "1") {
+         var asdData=response.data;
+         //asdData是广告位信息，将广告位信息绑定到
+         console.log(asdData);
+         } else {
+         console.log(response.msg);
+         }
+         
+         });
+         */
+    });
+
+
+    /*
+     * 根据广告位ID获取广告位信息
+     */
+    function getAdsById(id, callback) {
+        $.get("{:url('/api/adszone/getAdsById')}", {id: id},
+                function (response, status, xhr) {
+                    if (typeof (callback) === "function") {
+                        callback(response, status, xhr);
+                    }
+                }
+        );
+    }
+
+    /*
+     * 根据广告位标记获取广告位信息
+     */
+    function getAdsByMark(mark, callback) {
+        $.get("{:url('/api/adszone/getAdsByMark')}", {mark: mark},
+                function (response, status, xhr) {
+                    if (typeof (callback) === "function") {
+                        callback(response, status, xhr);
+                    }
+                }
+        );
+    }
+</script>

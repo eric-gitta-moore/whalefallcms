@@ -1,0 +1,35 @@
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        {:build_toolbar('refresh,add,delete')}
+                    </div>
+                    <table id="table" class="table table-striped table-bordered table-hover"
+						   data-operate-detail="{:$auth->check('adszone/ads')}"
+						   data-operate-del="{:$auth->check('adszone/del')}"
+						   width="100%">
+                    </table>
+		{if $adsConfig['developerTips']==1}
+		<div>
+			<h4><span style="color: red">注意事项：</span></h4>
+			<p>广告位ID  1~5为测试专用，正常使用时，<span style="color: red">需要新建广告位</span>，也可以删掉ID为1~5的广告位，但是<span style="color: red">请勿直接使用</span>，因为<span style="color: red">插件升级会删掉并重建ID为1~5的广告位</span></p>
+			<h4><span style="color: red">广告位调用说明：</span></h4>
+                        可以参考API文档，使用接口调用，可以先用“<span style="color: red">php think api --force=1</span>”命令生成接口文档后，<a href="/api.html" target="_blank">点击查看接口文档</a>；
+			<br/>电脑端控制器获取广告信息的参考代码：
+			<pre style=" text-align: left;">
+$Adszone = new \addons\adszone\library\Adszone();
+$result = $Adszone->getAdsById($id); //按照ID调用广告位
+$result = $Adszone->getAdsByMark($mark); //按照标记调用广告位
+			</pre>
+			<br/><a href="{$adsHome}" target="_blank">点击查看使用示例</a>
+		</div>
+		{/if}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<nav class="footnav clf">
+    <a href="/" id="waplink"><span class="m01">首页</span></a>
+    <a href="/" id="applink"><span class="m01">首页</span></a>
+    <a href="{:url('index/' . check_module($module) . '.cate/index')}" id="cate"><span class="m03">发现</span></a>
+    <a href="{:url('index/' . check_module($module) . '.rank/index')}" id="new"><span class="m02">榜单</span></a>
+    <a href="{:url('index/bookcase/index')}" id="fav"><span class="m05">书架</span></a>
+    <a href="{if $is_login}{:url('index/user/index')}{else /}{:url('index/user/login')}{/if}" id="user"><span class="m04">会员</span><i></i></a>
+</nav>
+<div class="clearfix"></div>

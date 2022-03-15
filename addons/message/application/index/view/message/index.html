@@ -1,0 +1,109 @@
+<style>
+    .statistics h5 {
+        margin: 0;
+        padding: 15px 0;
+        font-size: 16px;
+        color: #616161;
+    }
+
+    .statistics > div {
+        padding: 0 10px;
+    }
+
+    .statistics .panel-body span {
+        font-size: 16px;
+        font-family: Arial, verdana, tahoma;
+    }
+
+    .panel-statistics h5 {
+        padding-bottom: 0px;
+        font-weight: 500;
+    }
+
+    .charts h2, .orders h2 {
+        font-size: 16px;
+    }
+
+    .orders .nav-tabs > li > a {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .orders .nav-tabs > li.active > a, .orders .nav-tabs > li.active > a:hover, .orders .nav-tabs > li.active > a:focus {
+        border-color: transparent;
+        border-bottom-color: #0084ff;
+        color: #444;
+    }
+
+    .orders .nav > li > a:hover, .orders .nav > li > a:active, .orders .nav > li > a:focus {
+        background: none;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+    }
+
+    .orders .table thead tr th {
+        font-weight: 400;
+    }
+    .orders .table tbody tr td {
+        text-align: center;
+    }
+</style>
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {include file="common/sidenav" /}
+        </div>
+        <div class="col-md-9">
+            <div class="row statistics">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-title">
+                            <h5>消息中心</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default orders" style="min-height: 300px">
+                <div class="panel-body mt-2" style="padding:0;">
+                    <ul class="nav nav-tabs">
+                        {foreach name="messageTypeList" item="vo"}
+                        <li {if (!$Think.get.type && $key == 'system') || $Think.get.type == $key}class="active"{/if}>
+                        <a href="?type={$key}" class="px-0 mr-3"><h2 class="mb-1">{$vo}</h2></a>
+                        </li>
+                        {/foreach}
+                    </ul>
+                    <div class="table-responsive mt-2">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th class="text-center">{:__('Message_id')}</th>
+                                <th class="text-center">{:__('Message_title')}</th>
+                                <th class="text-center hidden-xs">{:__('Createtime')}</th>
+                                <th class="text-center">{:__('Status')}</th>
+                                <th class="text-center">{:__('Operate')}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {foreach name="list" item="vo"}
+                            <tr>
+                                <td>{$vo.rec_id}</td>
+                                <td>{$vo.messagenotice.message_title}</td>
+                                <td>{:date('Y-m-d H:i',$vo.createtime)}</td>
+                                <td>{if $vo.is_see == 1}<span style="color:green">已读</span>{else}<span style="color:red">未读</span>{/if}</td>
+                                <td>
+                                    <a target="_self" href="{:url('message/details',['rec_id'=>$vo['rec_id']])}}">{:__('More')}</a>
+                                </td>
+                            </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                        <div class="pager">
+                            {$list->render()}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

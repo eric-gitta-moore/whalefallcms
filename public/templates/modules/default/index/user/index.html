@@ -1,0 +1,139 @@
+{extend name="common/common/base"}
+
+{block name="header"}
+<link href="__STATIC_PATH__/css/base.css?v={$site.version}" rel="stylesheet" type="text/css">
+{/block}
+
+{block name="content"}
+<main id="left">
+    {//头部用户信息}
+    <section class="userinfo clf">
+        <div class="cover">
+            <img src="{$user.avatar}"/>
+        </div>
+        <div class="name">
+            <span class="id">{$user.nickname}</span>
+            <span> <i class="{if $is_vip || $is_agent}u2{else /}u1{/if}">
+                {if $is_vip}VIP会员{elseif $is_agent}代理{else /}用户{/if}
+            </i> </span>
+        </div>
+        <div class="userBG-2"></div>
+        <a href="javascript:history.go(-1);" class="back">返回</a>
+        {php}
+        /*
+        <a href="/e/member/EditInfo/EditSafeInfo.php" class="setting">设置</a>
+        */
+        {/php}
+    </section>
+    <div class="clearfix"></div>
+
+    <section class="block">
+        <ul class="fun_list">
+            <li><a href="{:url('index/signin/index')}"><i class="fun08"></i><span>今日签到赠送<b class="even">50</b>阅币<strong>已连签<b
+                    class="even">0</b>天</strong></span></a></li>
+            <li><a href="{:url('index/message/index')}"><i class="fun12"></i><span>站内信息</span></a>
+            </li>
+        </ul>
+    </section>
+    <div class="clearfix"></div>
+    <section class="block">
+        <ul class="fun_list">
+            <li>
+                <a href="{:url('index/qnbuygroup.buygroup/buy')}">
+                    <i class="fun14"></i>
+                    <span>
+                        {if $user['group_id']!=1 && $user['group_id']!=$site['group_agent_id']}
+                            VIP到期时间：{:isset($user['usergroup']['expiredtime'])?datetime($user['usergroup']['expiredtime']):'永久'}
+                        {elseif $user['group_id']==$site['group_agent_id']}
+                            代理到期时间：{:isset($user['usergroup']['expiredtime'])?datetime($user['usergroup']['expiredtime']):'永久'}
+                        {else /}
+                            开通VIP权益享受更多权益!
+                        {/if}
+                        <strong>
+                            {if empty($is_vip) && empty($is_agent)}
+                            开通<b>VIP</b>
+                            {else /}
+                            升级<b>VIP</b>
+                            {/if}
+                        </strong>
+                    </span>
+                </a>
+            </li>
+            <li style="border:0;">
+                <a href="{:url('/index/recharge/recharge')}">
+                    <i class="fun01"></i><span>{$site.score_name}：<b>{$user.score}</b></span>
+                    <strong style="color:#999;font-size:.7em;">{$site.score_name}充值</strong>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <div class="clearfix"></div>
+    <section class="block">
+        <ul class="fun_list">
+            {if config('templates.landing_page_url')}
+            <li>
+                <a href='{:config('templates.landing_page_url')}' target='_blank'>
+                    <i class='fun12'></i>
+                    <span class='red'>点击收藏网址发布页，防丢失</span>
+                </a>
+            </li>
+            {/if}
+
+            {php}/*
+            <li>
+                <a href='https://dwz.cn/Zh8ISN5V' target='_blank'>
+                    <i class="fun02"></i>
+                    <span>最新网址：wuman4.com/?f=134843</span>
+                </a>
+            </li>
+            <li style="border:0;"><a href='https://www.93fed.com/index.php?f=mh' target='_blank'><i class='fun13'></i>老司机看片福利</a></li>
+            */
+            {/php}
+
+            <li><a href="{:url('index/invite/index')}"><i class="fun13"></i><span>分享推广/赚取{$site.score_name}</span></a></li>
+        </ul>
+    </section>
+    <div class="clearfix"></div>
+
+    <section class="block">
+        <ul class="fun_list">
+            <li><a href="{:url('/index/recharge/moneylog')}"><i class="fun03"></i> <span>充值记录 / 订单</span></a></li>
+            <li><a href="{:url('index/bookcase/index')}"><i class="fun09"></i><span>我收藏的漫画</span> </a></li>
+            <li><a href="{:url('index/bookcase/history')}"><i class="fun10"></i><span>浏览记录</span></a></li>
+        </ul>
+    </section>
+    <div class="clearfix"></div>
+
+    {php}/*
+    <section class="block">
+        <ul class="fun_list">
+            <li><a href="/e/member/EditInfo/"><i class="fun07"></i> <span><em> Email：用于找回密码，建议绑定</em></span> </a></li>
+            <li><a href="/e/member/EditInfo/EditSafeInfo.php"><i class="fun15"></i><span>账号密码</span></a></li>
+        </ul>
+    </section>
+    <div class="clearfix"></div>
+
+    <section class="block">
+        <ul class="fun_list">
+            <li><a href="/e/member/EditInfo/"><i class="fun05"></i> <span><em>QQ账号：绑定可用QQ号登陆</em></span> </a></li>
+            <li><a href="/e/member/EditInfo/"><i class="fun06"></i> <span><em>手机号：绑定可用手机号登陆</em></span> </a></li>
+        </ul>
+    </section>
+    <div class="clearfix"></div>
+    */
+    {/php}
+
+    <section class="block">
+        <ul class="fun_list">
+            <li><a href="/help/"><i class="fun04"></i> <span>联系客服：提供App付款记录和本页截图</span></a></li>
+        </ul>
+    </section>
+    <section class="block">
+        <a href="/e/member/login/login.php" class="morebtn" style="color:#f14526;">退出 / 切换账户</a>
+    </section>
+    <div class="clearfix"></div>
+
+</main>
+<div class="clearfix"></div>
+
+{/block}

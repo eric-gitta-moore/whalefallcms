@@ -1,0 +1,92 @@
+{extend name="common/base1"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+<style type="text/css">
+    #banner-container { display: block; position: relative; z-index: 1; width: 100%; overflow: hidden; }
+    #banner-container .loading { display: block; width: 70px; text-align: center; font-size: 0; position: absolute; top: 50%; left: 50%; -webkit-transform: translate3d(-50%,-50%,0); transform: translate3d(-50%,-50%,0); }
+    #banner-container .loading .item { width: 18px; height: 18px; margin: 0 2px; background-color: #333333; border-radius: 100%; display: inline-block; -webkit-animation: loading-delay 1.4s infinite ease-in-out; animation: loading-delay 1.4s infinite ease-in-out; -webkit-animation-fill-mode: both; animation-fill-mode: both; }
+    #banner-container .loading .item:nth-child(2) { -webkit-animation-delay: -0.16s; animation-delay: -0.16s; }
+    #banner-container .loading .item:nth-child(3) { -webkit-animation-delay: -0.32s; animation-delay: -0.32s; }
+    @-webkit-keyframes loading-delay {
+        0%,80%,100% {
+            -webkit-transform: scale(0);
+        }
+        40% {
+            -webkit-transform: scale(1);
+        }
+    }
+    @keyframes loading-delay {
+        0%,80%,100% {
+            transform: scale(0);
+            -webkit-transform: scale(0);
+        }
+        40% {
+            transform: scale(1);
+            -webkit-transform: scale(1);
+        }
+    }
+    .navbar > .tab-box{
+        width:3.5rem;
+    }
+</style>
+{/block}
+
+{block name="search_nav"}
+<div class="navbar flt">
+    <nav class="tab-box">
+        <div class="item">
+            <a href="/" {if $module=="cartoon"}class="active"{/if}>漫画</a>
+        </div>
+        <div class="item">
+            <a href="{:url('index/index/novel')}" {if $module=="novel"}class="active"{/if}>小说</a>
+        </div>
+        {php}/*
+        <div class="item">
+            <a href="{:url('index/index/listen')}" {if $module=="listen"}class="active"{/if}>听书</a>
+        </div>*/{/php}
+    </nav>
+    <div class="action">
+        <a href="{:url('index/' . $module . '.search/index')}" class="btn">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M35.94 35.94l7.71 7.71" fill="none" stroke="#fff" stroke-width="3"/><circle cx="23.3" cy="23.3" r="18.5" fill="none" stroke="#fff" stroke-width="3"/><path d="M11.72 23.15A12 12 0 0 1 24.5 12" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3"/></svg>
+        </a>
+    </div>
+</div>
+{/block}
+
+{block name="banner"}
+<div id="banner-container">
+    <div class="loading">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <div class="portal-slick mt-navbar">
+        {volist name="banners['data']" id="banner"}
+        <div class="item">
+            <a href="{$banner.linkurl}">
+                <img class="slide_loading" style="height: {$banners.height}px" src="{:img($banner['imageurl'])}" alt="{$banner.title}" title="{$banner.title}" />
+            </a>
+        </div>
+        {/volist}
+    </div>
+</div>
+{/block}
+
+{block name="subnav"}
+<style>.item_cate{width: 1.333rem;height: 1.333rem;}</style>
+<nav class="portal-nav">
+    {volist name="subnav" id="nav"}
+    <div class="item">
+        <a href="{$nav.url}">
+            <img src="{:img($nav['image'])}" alt="{$nav.title}" title="{$nav.title}" class="item_cate"/>
+            <div class="title">{$nav.title}</div>
+        </a>
+    </div>
+    {/volist}
+</nav>
+{/block}
+
+{block name="content"}{/block}
+
+{block name="footer"}{/block}

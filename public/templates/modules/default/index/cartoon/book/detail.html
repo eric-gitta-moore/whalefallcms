@@ -1,0 +1,146 @@
+{extend name="common/common/base"}
+
+{block name="header"}
+<link href="__STATIC_PATH__/css/base.css?v={$site.version}" rel="stylesheet" type="text/css">
+{/block}
+
+{block name="content"}
+<main id="left">
+{//头部}
+<section class="detailBox">
+    <div class="detailtop">
+        <a href="javascript:history.go(-1);" class="back01"></a>
+        <a href="{:url('index/bookcase/index')}" class="mybooks01">书架</a>
+        <a href="/" class="home" id="waplink"></a>
+        <a href="/" class="home" id="applink"></a>
+    </div>
+    <div class="detailCover clf">
+        <div class="w65 rbg">
+            <h1 class="booktitle">{$detail.name}</h1>
+            <div style="line-height:25px; font-size:0.7em">
+                <p>作者：<em>{$detail.author.name}</em></p>
+                <p>状态：<em>{$detail.status_text}</em></p>
+                <p>最新：<em>{$detail.last_chapter}</em>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="detailBG">
+        <div class="back" style="background-image: url();background-size:cover;"></div>
+        <div class="cover" style="background-image: url({$detail.horizon_image});background-size:cover;"></div>
+    </div>
+</section>
+<div class="clearfix"></div>
+
+{//介绍}
+<section class="block">
+    <div class="detailBtnBox clf">
+        <a href="{:url('index/' . $module . '.chapter/show',['id' => count($detail['chapter'])?$detail['chapter'][count($detail['chapter'])-1]['id']:-1 ] ) }" class="readBtn on" id="startUrl" target="_blank">开始阅读</a>
+        <div class="zan" id="like_416">
+            {if !empty($collection)}
+            <a id="collection_btn" class="collected" href="javascript:;">
+                <i></i>
+                <span>
+                    <span id="collect-name">已收藏</span>
+                    <em class="diggnum">(<span id="collect-num">{$detail.collectnum}</span>)</em>
+                </span>
+            </a>
+            {else /}
+            <a id="collection_btn" href="javascript:;">
+                <i></i>
+                <span>
+                    <span id="collect-name">收藏</span>
+                    <em class="diggnum">(<span id="collect-num">{$detail.collectnum}</span>)</em>
+                </span>
+            </a>
+            {/if}
+        </div>
+    </div>
+    <div class="detailBoxdesc">{$detail.summary}</div>
+    <div class="detailBoxdesc">
+        <span>标签：</span>
+        {foreach $detail['cate'] as $cate}
+        <a href='/cate/?type=61' class='tag blueTag'>{$cate.name}</a>
+        {/foreach}
+    </div>
+</section>
+<div class="clearfix"></div>
+
+{//按钮}
+<section class="favbox">
+    <a href="javascript:void(0);" id="add" onclick="user.vote('416','1','3','',this);">+ 加入我の书架</a>
+    <a href="javascript:void(0);" id="del" onclick="user.vote('416','1','4','',this);" class="off">- 已加入书架</a>
+</section>
+<div class="clearfix"></div>
+
+{//章节列表}
+<section class="block">
+    <div class="titleBar navorder clf">
+        <i class="fl" onclick="location='{:url('index/' . $module . '.chapter/show',['id' => count($detail['chapter'])?$detail['chapter'][count($detail['chapter'])-1]['id']:-1 ] ) }'" style="cursor:pointer;">{$detail.status_text}</i>
+        <a href="javascript:void(0);" class="fr orderBtn01" id="desc">正序</a>
+        <a href="javascript:void(0);" class="fr orderBtn02 active" id="asc">倒序</a>
+    </div>
+    <ul class="chapter_list qhlist clf">
+        <div id="dataList" class="data-list">
+
+
+            {volist name="$detail['chapter']" id="chapter" key="key" length="10"}
+                {if $detail['free_type'] == 1 && $chapter['money'] > 0 && $key >= $detail['start_pay']}
+                    {if in_array($chapter['id'],$user_buy_log)}
+                        <li>
+                            <a href="{:url('index/' . $module . '.chapter/show',['id'=>$chapter['id']])}">
+                                <span class="imgs fl"><img src="{$chapter.image}"></span>
+                                <span class="w50">
+                                    {$chapter.name}
+                                    <p>{:$chapter['log_time']?datetime($chapter['log_time']):datetime($chapter['updatetime'])}</p>
+                                    <b class="vip">已购</b>
+                                </span>
+                            </a>
+                        </li>
+                    {else /}
+                        <li>
+                            <a href="{:url('index/' . $module . '.chapter/show',['id'=>$chapter['id']])}">
+                                <span class="imgs fl"><img src="{$chapter.image}"></span>
+                                <span class="w50">
+                                    {$chapter.name}
+                                    <p>{:$chapter['log_time']?datetime($chapter['log_time']):datetime($chapter['updatetime'])}</p>
+                                    <b class="vip">VIP免费</b>
+                                </span>
+                            </a>
+                        </li>
+                    {/if}
+                {else /}
+                    <li>
+                        <a href="{:url('index/' . $module . '.chapter/show',['id'=>$chapter['id']])}">
+                            <span class="imgs fl"><img src="{$chapter.image}"></span>
+                            <span class="w50">
+                                {$chapter.name}
+                                <p>{:$chapter['log_time']?datetime($chapter['log_time']):datetime($chapter['updatetime'])}</p>
+                                <b class="read">免费</b>
+                            </span>
+                        </a>
+                    </li>
+                {/if}
+            {/volist}
+
+
+            <div class="morebtn" style="background:#EFEFF4">{$detail.status_text}</div>
+</section>
+<div class="clearfix"></div>
+
+{//书本详细页底部横幅}
+{php}/*
+<section class="showaddiv">
+    <a href="/e/member/buygroup/"> <img src="/skin/images/vip.png" /> </a>
+</section>
+*/{/php}
+
+
+</main>
+
+{/block}
+
+
+
+
+

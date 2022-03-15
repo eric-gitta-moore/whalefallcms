@@ -1,0 +1,55 @@
+{extend name="common/base1"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+{/block}
+
+{block name="subnav"}
+<div class="rt-bar">
+    <div class="row">
+        <div class="col icon">
+            <a href="{:url('index/user/index')}">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+                    <path d="M29.56 39.47a2 2 0 0 1-1.38-.56L8.45 20 28.17 1.09A2 2 0 1 1 30.94 4L14.23 20l16.71 16a2 2 0 0 1-1.38 3.44z"
+                          fill="#ff730a"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="col title" style="margin-right: 1.333rem;">客服帮助</div>
+    </div>
+</div>
+{/block}
+
+{block name="content"}
+<div class="contact-box mt-10" data-type="default">
+    <div class="row">{$site.help_tips}</div>
+    <div class="row">客服QQ： <label class="label">{$site.common_kefu_qq}</label></div>
+    <div class="row">客服微信： <label class="label">{$site.common_kefu_wx}</label></div>
+    <div class="row">QQ二维码： <img src="{$site.common_kefu_qq_qr}" width="100" height="100" style="width:100px;height:100px;"></div>
+    <div class="row">微信二维码： <img src="{$site.common_kefu_wx_qr}" width="100" height="100" style="width:100px;height:100px;"></div>
+</div>
+
+{//:trace(config('site.help_faq'))}
+
+{php}
+$help_faq = config('site.help_faq');
+trace($help_faq);
+{/php}
+{if !empty($help_faq)}
+<div class="qa-box mt-10">
+    {foreach $help_faq as  $faq => $text}
+    <div class="item">
+        <div class="head">
+            <div class="title">{$faq}</div>
+            <div class="action">
+                <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><title>11</title><path fill="#d2d2d2" d="M18 29.13L.94 12.19l2.12-2.13L18 24.9l14.94-14.84 2.12 2.13L18 29.13"></path></svg>
+            </div>
+        </div>
+        <div class="body" style="display: none;">
+            {$text}
+        </div>
+    </div>
+    {/foreach}
+</div>
+{/if}
+{/block}

@@ -1,0 +1,32 @@
+
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+    {include file="common/common/meta"}
+    <script type="text/javascript">
+        var require = {
+            config: {$config|json_encode}
+        }
+        var loadingImage = "{$site.loading_image}",
+            module = "{$module}",
+            cmod = "{$cmod}",
+            auto_task_urls = {$auto_task_urls|json_encode};
+
+        {if $cmod == "chapter" || $cmod == "detail"}
+        {php}
+        if($cmod == "chapter")
+            $book_info = $chapter['book'];
+        elseif($cmod == "detail")
+            $book_info = $detail;
+        unset($book_info['cate']);
+        unset($book_info['chapter']);
+        unset($book_info['reward']);
+        unset($book_info['author']);
+        {/php}
+        var book_info = {$book_info|json_encode};
+        {/if}
+
+    </script>

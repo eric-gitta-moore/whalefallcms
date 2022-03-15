@@ -1,0 +1,5 @@
+<ul class="list-group">
+    <li class="list-group-heading">{:__('充值中心1')}</li>
+    <li class="list-group-item {:$actionname=='recharge'?'active':''}"><a href="{:url('index/recharge/recharge')}"><i class="fa fa-cny fa-fw"></i> {:__('充值余额')}</a></li>
+    <li class="list-group-item {:$actionname=='moneylog'?'active':''}"><a href="{:url('index/recharge/moneylog')}"><i class="fa fa-list fa-fw"></i> {:__('余额日志')}</a></li>
+</ul>

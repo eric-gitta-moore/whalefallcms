@@ -1,0 +1,212 @@
+.cover-box > .bg {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.cover-box > .bg img {
+    display: block;
+    width: 100%;
+    height: 200px;
+}
+.bubble {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    border-radius: 50%;
+    background: 0 0;
+    text-align: center;
+    line-height: 55px;
+    font-size: 20px;
+    color: #44a9f7;
+    padding-top: 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: inset -30px -30px 75px rgba(68,168,247,.2), inset 0 0 5px rgba(68,168,247,.5), inset 0 0 55px rgba(255,255,255,.5), inset -3px -3px 5px rgba(68,168,247,.5), 0 0 50px rgba(255,255,255,.75);
+    box-shadow: inset -30px -30px 75px rgba(68,168,247,.2), inset 0 0 5px rgba(68,168,247,.5), inset 0 0 55px rgba(255,255,255,.5), inset -3px -3px 5px rgba(68,168,247,.5), 0 0 50px rgba(255,255,255,.75);
+}
+.bubble hr {
+    width: 80%;
+    height: 1px;
+    border: none;
+    margin: 0 auto;
+    background-color: #44a9f7;
+}
+.btn-tip-menu {
+    background: #44a9f7;
+    text-align: center;
+    padding: .2rem;
+    width: 100px;
+    border-radius: 10px;
+    color: #fff;
+    margin: 0 auto;
+    display: block;
+}
+.mui-media-object {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+}
+.mui-media-body p {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+.ds{
+	width:100%;
+	position:fixed;
+	height:100%;
+	top:0;
+	left:0;
+	display:none;
+    z-index: 20;
+}
+.ds .msk{
+	width:100%;
+	position:absolute;
+	background: rgba(0,0,0,.6);
+	height:100%;
+}
+.ds .txt{
+	position: fixed;
+    height: 5.5rem;
+    width: 100%;
+    bottom: 0;
+    background: #fff;
+}
+.ds .txt .title{
+	background: #f4f4f4;
+    color: #999;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    font-size: .45rem;
+    font-weight: 400;
+}
+.ds .txt .send{
+    padding: .25rem 0 0 0;
+}
+.ds .txt .send ul{
+	display: -webkit-box;
+	border-bottom: .2rem solid #efeff4;
+}
+.ds .txt .send ul li{
+	-webkit-box-flex: 1;
+}
+.ds .txt .send ul li img{
+	display: block;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+	border-radius: 5px;
+	width: 88%;
+}
+.ds .txt .send ul li span{
+	display: block;
+    text-align: center;
+    line-height: .8rem;
+    font-size: .32rem;
+    color: #555;
+}
+.ds .txt .dbtn{
+	height: 2rem;
+    line-height: 1rem;
+    text-align: center;
+    font-size: .42rem;
+    color: #999;
+}
+.tip-history{
+	padding:10px;
+}
+.tip-history .title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+.tip-history .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 5px;
+    font-size: 12px;
+}
+.avatar {
+    width: 100%;
+    display: table-cell;
+    float: left;
+	text-align: center;
+}
+.tip-history .avatar {
+    width: 30px;
+    border: none;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.tip-history .row .detail {
+    -webkit-box-flex: 9;
+    -ms-flex: 9;
+    flex: 9;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+	border-bottom: 1px solid #eee;
+}
+.tip-history .nickname{
+    font-weight: 700;
+}
+.tip-history .gift {
+    color: #ff9728;
+    padding: 5px 0;
+}
+.tip-history .gift img {
+    width: 30px;
+}
+.tip-history .datetime {
+    color: #c2c2c2;
+}
+
+.moreBtn {
+    position: relative;
+    display: block;
+    width: 96%;
+    margin: 0 auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 18px;
+    text-align: center;
+    line-height: 2.33333333;
+    border-radius: 5px;
+    color: #454545;
+    overflow: hidden;
+    background-color: #f7f7f7;
+    border: 1px solid rgba(0,0,0,.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

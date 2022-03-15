@@ -1,0 +1,20 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label for="controller" class="control-label col-xs-12 col-sm-2">{:__('控制器')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="controller" name="controller"  value=""  />
+            <p></p>
+            <p>1、如果为空，将会自动生成全部菜单</p>
+            <p>2、也可以手动生成的指定控制器菜单(插件标识/控制器),如{$name}/index</p>
+        </div>
+    </div>
+
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('生成')}</button>
+        </div>
+    </div>
+</form>

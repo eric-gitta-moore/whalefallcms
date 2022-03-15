@@ -1,0 +1,335 @@
+body {
+    background: #F4F4F4;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 12px;
+    text-align: center;
+    color: #414141;
+    font-family: "Microsoft YaHei", 宋体;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0 auto;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+h1 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+h4 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+h5 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+h6 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.clear {
+    clear: both;
+    float: none;
+}
+
+img {
+    border: 0;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #2D2D2D;
+    text-decoration: none;
+    -webkit-transition: color 0.3s linear;
+    -moz-transition: color 0.3s linear;
+    -o-transition: color 0.3s linear;
+    transition: color 0.3s linear;
+}
+
+a:hover {
+    color: #FF5050;
+    text-decoration: none;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.lef {
+    float: left;
+}
+
+.rig {
+    float: right;
+}
+
+.fix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: "";
+    clear: both;
+    height: 0;
+}
+
+.fix {
+    *zoom: 1;
+}
+
+em {
+    font-style: normal;
+}
+
+.landingHead {
+    overflow: hidden;
+    padding: 2%;
+}
+
+.landingHead h2 {
+    overflow: hidden;
+    font-size: 1.2rem;
+    text-align: left;
+    padding-top: 0.5rem;
+}
+
+.commonPadding {
+    overflow: hidden;
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.commonPadding .left {
+    width: 60%;
+    text-align: left;
+}
+
+.commonPadding .left img {
+    float: left;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-top: 3px;
+}
+
+.commonPadding .left p {
+    color: #999999;
+    font-size: 12px;
+    float: left;
+    padding-left: 0.5rem;
+}
+
+.commonPadding .left p a {
+    color: #000;
+    font-size: 14px;
+}
+
+.commonPadding .left p b {
+    font-weight: normal;
+}
+
+.commonPadding .left p span {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    color: #D2D2D2;
+    font-size: 10px;
+}
+
+.commonPadding .right {
+    width: 20%;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    background: #3897F0;
+    color: #FFF;
+}
+
+.wrapper {
+    overflow: hidden;
+    padding: 2%;
+}
+
+.content {
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.8rem;
+}
+
+/*kk*/
+.content img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.content p {
+    padding-bottom: 1rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+.content p b {
+    overflow: hidden;
+    display: block;
+    text-align: left;
+    font-size: 21px;
+    font-weight: bolder;
+    color: #17090c;
+}
+
+.content p strong {
+    overflow: hidden;
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+    color: #3897F0;
+}
+
+.weixin {
+    overflow: hidden;
+    padding: 2%;
+}
+
+.tixin {
+    overflow: hidden;
+    text-align: center;
+    font-size: 14px;
+}
+
+.tixin p {
+    line-height: 1.4rem;
+}
+
+.tixin .xin {
+    overflow: hidden;
+}
+
+.tixin .xin a {
+    display: block;
+    background: #1AAD19;
+    color: #FFF;
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.nono {
+    overflow: hidden;
+    padding: 2%;
+}
+
+.nono .non {
+    overflow: hidden;
+    font-size: 14px;
+    text-align: left;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+.nono .non span {
+    padding-right: 1rem;
+}
+
+.nono .non img {
+    width: 17px;
+    margin-bottom: -3px;
+    margin-right: 3px;
+}
+
+.title-text span {
+    display: block;
+    position: relative;
+    color: #8c8c8c;
+    text-align: center;
+}
+
+.title-text span:before, .title-text span:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    background: #8c8c8c;
+    width: 35%;
+    height: 1px;
+}
+
+.title-text span:before {
+    left: 2%;
+}
+
+.title-text span:after {
+    right: 2%;
+}
+
+.gog {
+    margin-top: 18px;
+    clear: both;
+    text-align: left;
+    overflow: hidden;
+    padding-bottom: 0.4rem;
+    font-size: 16px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.icon_praise_gray {
+    width: 13px;
+    height: 13px;
+    vertical-align: middle;
+    display: inline-block;
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+}
+
+/*kk*/
+.content p.is_blur {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 99%;
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    color: #525252;
+}
+
+.content p.no_blur_and_hide {
+    display: none;
+}

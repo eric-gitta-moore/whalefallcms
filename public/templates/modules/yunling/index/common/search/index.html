@@ -1,0 +1,137 @@
+{extend name="common/base1"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/bootstrap-paginate.css" />
+{/block}
+
+{block name="search_nav"}
+{if !empty($list)}
+<div class="search-bar search-multiple">
+    <div class="inner">
+        <div class="field">
+            <div class="icon">
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M31.21 27.4l-5.15-5.15a13.06 13.06 0 1 0-2.52 3.13l4.84 4.84zM3.8 15.78a11 11 0 1 1 11 11 11 11 0 0 1-11-11z" fill="#999"/></svg>
+            </div>
+            <input type="text" placeholder="输入书本名" id="search_keyword" maxlength="18" value="{$search_word}"/>
+        </div>
+        <button onclick="location.href='/';" id="btn_cancel">取消</button>
+        <button id="btn_search" style="display: none;">搜索</button>
+    </div>
+    <div class="res-text">搜索“<span class="typo-orange">{$search_word}</span>”结果，共<span class="typo-orange">{$list->total()}</span>条
+    </div>
+</div>
+{else /}
+<div class="search-bar">
+    <div class="inner">
+        <div class="field">
+            <div class="icon">
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M31.21 27.4l-5.15-5.15a13.06 13.06 0 1 0-2.52 3.13l4.84 4.84zM3.8 15.78a11 11 0 1 1 11 11 11 11 0 0 1-11-11z" fill="#999"></path></svg>
+            </div>
+            <input type="text" placeholder="输入书本名" id="search_keyword" maxlength="18" />
+        </div>
+        <button onclick="location.href='/'" id="btn_cancel">取消</button>
+        <button id="btn_search" style="display: none;">搜索</button>
+    </div>
+</div>
+{/if}
+{/block}
+
+{block name="content"}
+{if !empty($list)}
+<div class="books-res" id="search-result-container" >
+    {volist name="list" id="vo"}
+        <div class="item">
+            <a href="{:url('index/' . $module . '.book/detail' , ['id' => $vo['id'] ] )}" class="link">
+                <div class="cover">
+                    <img width="63" height="84" src="{:img($vo['cover_image'])}" alt="{$vo.name}" />
+                </div>
+                <div class="body">
+                    <div class="title">{$vo.name}</div>
+                    <div class="author">作者：{$vo.author.name}</div>
+                    <div class="text">{$vo.summary|mb_substr=###,0,20}</div>
+                    <div class="bottom">
+                        <span class="col"><i class="icon-gray-hot"></i>{$vo.readnum}</span>
+                        <span class="col"><i class="icon-hand"></i>{$vo.likenum}</span>
+                    </div>
+                </div>
+            </a>
+            <div class="action">
+                <a href="{:url('index/' . $module . '.book/detail' , ['id' => $vo['id'] ] )}" class="btn">阅读</a>
+            </div>
+        </div>
+    {/volist}
+</div>
+<div style="text-align: center">
+    {$list -> render()}
+</div>
+
+{if $list->total() == 0}
+{//没有搜索到结果显示为你推荐}
+<div class="bm-box mt-10">
+    <div class="head">
+        <div class="title">为你推荐</div>
+    </div>
+    <div class="books-res" id="search-result-container" >
+        {volist name="recommend" id="vo"}
+        <div class="item">
+            <a href="{:url('index/' . $module . '.book/detail' , ['id' => $vo['id'] ] )}" class="link">
+                <div class="cover">
+                    <img width="63" height="84" src="{:img($vo['cover_image'])}" alt="{$vo.name}" />
+                </div>
+                <div class="body">
+                    <div class="title">{$vo.name}</div>
+                    <div class="author">作者：{$vo.author.name}</div>
+                    <div class="text">{$vo.summary|mb_substr=###,0,20}</div>
+                    <div class="bottom">
+                        <span class="col"><i class="icon-gray-hot"></i>{$vo.readnum}</span>
+                        <span class="col"><i class="icon-hand"></i>{$vo.likenum}</span>
+                    </div>
+                </div>
+            </a>
+            <div class="action">
+                <a href="{:url('index/' . $module . '.book/detail' , ['id' => $vo['id'] ] )}" class="btn">阅读</a>
+            </div>
+        </div>
+        {/volist}
+    </div>
+</div>
+{elseif $list->total() < 5}
+{//小于五条显示你可能喜欢}
+<div class="books-res mt-10">
+    <div class="head">
+        <div class="title">你可能会喜欢</div>
+    </div>
+    <div class="books-res" id="search-result-container" >
+        {volist name="recommend" id="vo"}
+        <div class="item">
+            <a href="{:url('index/' . $module . '.book/detail' , ['id' => $vo['id'] ] )}" class="link">
+                <div class="cover">
+                    <img width="63" height="84" src="{:img($vo['cover_image'])}" alt="{$vo.name}" />
+                </div>
+                <div class="body">
+                    <div class="title">{$vo.name}</div>
+                    <div class="author">作者：{$vo.author.name}</div>
+                    <div class="text">{$vo.summary|mb_substr=###,0,20}</div>
+                    <div class="bottom">
+                        <span class="col"><i class="icon-gray-hot"></i>{$vo.readnum}</span>
+                        <span class="col"><i class="icon-hand"></i>{$vo.likenum}</span>
+                    </div>
+                </div>
+            </a>
+            <div class="action">
+                <a href="{:url('index/' . $module . '.book/detail' , ['id' => $vo['id'] ] )}" class="btn">阅读</a>
+            </div>
+        </div>
+        {/volist}
+    </div>
+</div>
+{/if}
+
+
+{else /}
+<div class="list search">
+</div>
+{/if}
+{/block}
+

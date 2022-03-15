@@ -1,0 +1,135 @@
+<style>
+    .panel-recharge h3 {
+        margin-bottom: 15px;
+        margin-top: 10px;
+        color: #444;
+        font-size: 16px;
+    }
+
+    .row-recharge > div {
+        margin-bottom: 10px;
+    }
+
+    .row-recharge > div > label {
+        width: 100%;
+        height: 40px;
+        display: block;
+        font-size: 14px;
+        line-height: 40px;
+        color: #999;
+        background: #fff;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        cursor: pointer;
+        text-align: center;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        font-weight: 400;
+    }
+
+    .row-recharge > div > label.active {
+        border-color: #0d95e8;
+        color: #0d95e8;
+    }
+
+    .row-recharge > div > label:hover {
+        z-index: 4;
+        border-color: #27b0d6;
+        color: #27b0d6;
+    }
+
+    .panel-recharge .custommoney {
+        border: none;
+        height: 100%;
+        width: 100%;
+        display: inherit;
+        line-height: 100%;
+    }
+
+    .row-recharge > div {
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .row-recharge > div input.form-control {
+        border: none;
+    }
+
+    .row-paytype div input {
+        display: none;
+    }
+
+    .row-paytype img {
+        height: 22px;
+        margin: 8px;
+        vertical-align: inherit;
+    }
+
+    .btn-recharge {
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0;
+    }
+
+</style>
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {include file="common/sidenav" /}
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default panel-recharge">
+                <div class="panel-body">
+                    <h2 class="page-header">{:__('Recharge')} <span><small class="text-danger">{:__('Current balance')}:{$user.money}</small></span></h2>
+                    <div class="alert alert-info-light">
+                        {$addonConfig.rechargetips}
+                    </div>
+                    <div class="clearfix"></div>
+                    <form action="{:url('recharge/submit')}" method="post">
+                        <input type="hidden" name="paytype" value="{$addonConfig.defaultpaytype}">
+                        <input type="hidden" name="money" value="{$addonConfig.defaultmoney}">
+                        <h3>{:__('Recharge money')}</h3>
+                        <div class="row row-recharge row-money">
+                            {foreach name="moneyList" id="money"}
+                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                                <label class="{:$money.default?'active':''}" data-type="fixed" data-value="{$money.value}">
+                                    ￥{$money.value}
+                                </label>
+                            </div>
+                            {/foreach}
+                            {if $addonConfig.iscustommoney}
+                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                                <label data-type="custom" data-value="">
+                                    {:__('Other money')}
+                                </label>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 hidden" id="col-custom">
+                                <label>
+                                    <input type="number" name="custommoney" step="0.01" class="form-control custommoney">
+                                </label>
+                            </div>
+                            {/if}
+                        </div>
+                        <h3>{:__('Pay type')}</h3>
+                        <div class="row row-recharge row-paytype">
+                            {foreach name="paytypeList" id="paytype"}
+                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 text-center">
+                                <label class="{:$paytype.default?'active':''}" data-value="{$paytype.value}">
+                                    <img src="__CDN__{$paytype.image}" alt="">
+                                </label>
+                            </div>
+                            {/foreach}
+                        </div>
+                        <div class="row row-recharge" style="margin:20px -15px 0 -15px;">
+                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+                                <input type="submit" class="btn btn-success btn-recharge btn-block" value="{:__('Recharge now')}"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

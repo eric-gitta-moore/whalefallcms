@@ -1,0 +1,53 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+
+    <div class="form-group">
+        <label for="c-self_path" class="control-label col-xs-12 col-sm-2">{:__('自定义目录')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-self_path"  class="form-control" name="row[self_path]" rows="5">{:isset($row['self_path'])?$row['self_path']:''}</textarea>
+            <span class="help-block">如果你扩展了一些目录和文件，需要一起打包的，请填上。(一行一条记录),例：<br/>
+            application/admin/lang/zh-cn/development<br/>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-table_name" class="control-label col-xs-12 col-sm-2">{:__('插件数据表')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-table_name" data-multiple="true"    data-source="development/addons/datatables" class="form-control selectpage" name="row[table_name]" type="text" value="{:isset($row['table_name'])?$row['table_name']:''}">
+            <span class="help-block" >如果插件有数据表请选择，没有请忽略</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-update_data" class="control-label col-xs-12 col-sm-2">{:__('数据库维护')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-update_data"  class="form-control" name="row[update_data]" rows="5">{:isset($row['update_data'])?$row['update_data']:''}</textarea>
+            <span class="help-block">需要增加默认数据或维护数据表的SQL语句。没有请忽略</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-table_name" class="control-label col-xs-12 col-sm-2">{:__('插件版本号')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-version"     class="form-control" name="row[version]" type="text" value="{:isset($info['version'])?$info['version']:'1.0.0'}">
+            <span ></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-table_name" class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="hidden" name="row[name]" value="{$name}">
+            <span class="text-red">*打包成功后压缩包在你项目的runtime/addons/目录里面</span>
+        </div>
+    </div>
+    <br/>
+    <br/>
+
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

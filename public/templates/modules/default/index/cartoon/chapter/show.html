@@ -1,0 +1,140 @@
+{extend name="common/common/base"}
+
+{block name="header"}
+<link href="__STATIC_PATH__/css/chapter.css?v={$site.version}" rel="stylesheet" type="text/css">
+<script>
+    var chapter_id = {$chapter.id},
+        auto_pay = {:$auto_pay==1?'true':'false'};
+</script>
+{/block}
+
+{block name="before_content"}
+{//框架头部}
+<section class="wap">
+    <div class="navtop">
+        <a href="{:url('index/' . $module . '.book/detail',['id' => $chapter['book']['id'] ] ) }" class="back" target="_blank">返回</a>
+        <a href="{:url('index/bookcase/index')}" class="mybooks" target="_blank">书架</a>
+        <a href="/" class="home" id="waplink"  target="_blank">首页</a>
+        <a href="/" class="home" id="applink">首页</a>
+    </div>
+</section>
+<div class="clearfix"></div>
+{/block}
+
+
+{block name="content"}
+{//页头文字和图片}
+<section class="showimg">
+    <div class="wap"><h1>{$chapter.name}</h1></div>
+    <div id="showimgcontent"></div>
+<!--    <div class="imgbg"></div>-->
+    <div class="mask"></div>
+</section>
+<div class="clearfix"></div>
+
+{include file="common/common/buy"}
+
+{//页尾大按钮}
+<section class="z-index">
+    <div class="ortherbtn clf">
+        <div class="fl"> <a href="javascript:;" id="addFavBTN">收藏<br /> 网站</a></div>
+        <div class="fc"> <a href="javascript:;" id="rbtn" data-url="{:url('index/' . $module . '.chapter/show',['id'=>$chapter['id']])}">报错<br /> 反馈</a> </div>
+        <div class="fr"> <a href="javascript:;" id="open">展开<br /> 目录</a> </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="btns">
+        <a href="javascript:;" data-uri="{$previous_url}" id="pre">&laquo; 上一话</a>
+        <a class="fl" href="{:url('index/' . $module . '.book/detail',['id' => $chapter['book']['id'] ] ) }"  target="_blank">返回封面</a>
+        <a href="javascript:;" data-uri="{$next_url}" id="next">下一话 &raquo;</a>
+    </div>
+
+    {//底部广告}
+    {php}/*
+    <section class="showaddiv">
+        <a href="/e/member/buygroup/"> <img src="/skin/images/vip.png" /> </a>
+    </section>
+    <div class="clearfix"></div>
+    */{/php}
+
+</section>
+<div class="clearfix"></div>
+
+
+{//收藏提示}
+<div class='t-popup' id="addFavBox">
+    <div class='t-popup-container'>
+        <div class="addFavBox">
+            <div><p>请用浏览器的【<span class="red">添加书签</span>】,</p>
+                <p>保存起来，方便下次阅读！</p>
+                <a href="javascript:;" id="close" class="greenBtn">我知道了</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+{//错误反馈}
+<div class='t-popup' id="outwin">
+    <div class='t-popup-container'>
+        <div class="outwin">
+            <div class="outwin-title">
+                <strong>请选择错误信息</strong>
+                <a class="close" href="javascript:void(0);"></a>
+            </div>
+            <div class="outwin-body">
+                <form name="contReportForm" onsubmit="return false;">
+                    <input type="hidden" name="enews" value="AddFeedback" />
+                    <ul class="form-list">
+                        <li class="form-line"> <label class="radio-label"><input type="radio" name="title" value="图片不显示"  class="a-radio"/><span class="b-radio"></span>图片不显示</label> <label class="radio-label"><input type="radio" name="title" value="章节图片缺失"  class="a-radio"/><span class="b-radio"></span>章节图片缺失</label> <label class="radio-label"><input type="radio" name="title" value="章节顺序错误"  class="a-radio"/><span class="b-radio"></span>章节顺序错误</label> <label class="radio-label"><input type="radio" name="title" value="其他问题：请看描述" class="other a-radio"/><span class="b-radio"></span>其他问题</label> </li>
+                        <li class="form-text"> <textarea name="saytext" id="errortext" rows="3" maxlength="150" placeholder="请填写你认为存在的其他问题，140字以内"></textarea> </li>
+                        <li class="form-bline"> <button type="submit" class="submit-button">提交</button> <button type="button" class="cancel-button">取消</button> </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+{/block}
+
+{block name="after_content"}
+{//框架底部}
+<div class="control_bottom">
+    <div class="BtnBox">
+        <a class="prev" href="javascript:;">上一章</a>
+        <div class="pagenum" id="open"><span>1</span>/<b id="num"></b></div>
+        <a class="next" href="javascript:;">下一章</a>
+    </div>
+    <div class="BtnTop">
+        <a class="stop" href="javascript:"><span>顶部</span></a>
+        <a href="/" class="home3" id="applink"><span>首页</span></a>
+        <a class="refresh" href="javascript:location.reload();"><span>刷新</span></a>
+        <a href="javascript:;" id="open" class="list"><span>目录</span></a>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+<div class="bottom"></div>
+<div class="openbg"></div>
+<div class="clearfix"></div>
+<div class="left-nav">
+    <div id="listtext"></div>
+    <li class="last">
+        <a class="fl" href="{:url('index/' . $module . '.book/detail',['id' => $chapter['book']['id'] ] ) }" target="_blank">返回目录</a>
+        <a class="fr close" href="javascript:;">关闭</a>
+    </li>
+</div>
+<div class="spinner"></div>
+<div class="layer"></div>
+<script type="text/html" id="litemppic"><img class="lazy" src="/templates/assets/modules/default/static/images/loadimg.gif" data-original="{img}"></script>
+<script type="text/html" id="litemptxt"><li id="t{id}"><a href="{nlink}">{name}</a></li></script>
+
+
+{/block}
+
+
+
+

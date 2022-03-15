@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden">
+<head>
+    <meta charset="UTF-8">
+    <title>{$title?:config('site.name')}</title>
+    <meta name="keywords" content="{$keywords?:config('site.name')}" />
+    <meta name="description" content="{$description?:config('site.name')}" />
+    <meta name="viewport" content="designWidth=750,width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    {block name="seo"}{/block}
+    {include file="common/header_common" /}
+    {block name="header"}{/block}
+</head>
+<body>
+{block name="search_nav"}{/block}
+{block name="banner"}{/block}
+{block name="subnav"}{/block}
+
+{block name="content"}{/block}
+
+
+{block name="footer"}{/block}
+
+{include file="common/footer_common" /}
+</body>
+</html>

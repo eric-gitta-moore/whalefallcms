@@ -1,0 +1,60 @@
+{extend name="common/base1"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+{/block}
+
+{block name="subnav"}
+<div class="navbar flt">
+    <nav class="tab-box">
+        <div class="item">
+            <a href="{:url('index/bookcase/index')}" class="active">收藏</a>
+        </div>
+        <div class="item">
+            <a href="{:url('index/bookcase/history')}">历史</a>
+        </div>
+    </nav>
+    <div class="action">
+        <span id="edit_btn">编辑</span>
+    </div>
+</div>
+{/block}
+
+{block name="content"}
+{if empty($collection)}
+    <div class="bs-box" style="margin-bottom: 0px;bottom: 1.333rem;">
+        <div class="common-ne">
+            <div class="subject">您还没有收藏记录</div>
+            <div class="action">
+                <a href="/" class="btn">去找几本看看</a>
+            </div>
+        </div>
+    </div>
+{else /}
+    <div class="bs-box" style="margin-bottom: 0px;bottom: 1.333rem;">
+        <div class="row-list" id="shelf-container" data-scroll="true">
+            {volist name="$collection" id="vo"}
+                <div class="item" data-looking="0">
+                    <a href="{:url('index/' . $vo['status'] . '.book/detail',['id' => $vo['bookid'] ] ) }">
+                        <div class="cover">
+                            <img class="bookcase lazy" src="{:img($site['loading_image'])}" data-original="{:img($vo['book_detail']['cover_image'])}" alt="{$vo.book_detail.name}" title="{$vo.book_detail.name}" />
+                        </div>
+                        <div class="body">
+                            <div class="title">{$vo.book_detail.name}</div>
+                            <div class="text">{$vo.book_detail.last_chapter}</div>
+                        </div>
+                    </a>
+                    <div class="cp-box" style="display:none;">
+                        <input type="checkbox" name="{$vo['bookid']}" class="selected-switch" value="{$vo['status']}">
+                        <div class="swtich"></div>
+                    </div>
+                </div>
+            {/volist}
+        </div>
+    </div>
+{/if}
+
+{include file="bookcase/delete_toolbar"}
+
+
+{/block}

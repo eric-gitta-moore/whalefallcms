@@ -1,0 +1,73 @@
+{if count($ruledata)<=1}
+<div class="alert alert-danger-light">
+    该插件还未有顶级菜单，菜单规则必须是“{$first_menu}”,可以去插件修改信息里修改。
+</div>
+{/if}
+
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('菜单')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[ismenu]', ['1'=>__('Yes'), '0'=>__('No')])}
+        </div>
+    </div>
+    <div class="form-group">
+        <label  class="control-label col-xs-12 col-sm-2">{:__('父类')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_select('row[pid]', $ruledata, $pid, ['class'=>'form-control', 'required'=>''])}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name" class="control-label col-xs-12 col-sm-2">{:__('规则')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="name" name="row[name]" data-placeholder-node="{:__('控制器/方法名,如果有目录请使用 目录名/控制器名/方法名')}" data-placeholder-menu="{:__('父级菜单无需匹配控制器和方法,子级菜单请使用控制器名')}" value="{if count($ruledata)<=1}{$first_menu}{else}{$addon_name}{/if}" data-rule="required" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Title')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="title" name="row[title]" value="" data-rule="required" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="icon" class="control-label col-xs-12 col-sm-2">{:__('图标')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group input-groupp-md">
+                <input type="text" class="form-control" id="icon" name="row[icon]" value="fa fa-circle-o" />
+                <a href="javascript:;" class="btn-search-icon input-group-addon">{:__('选择图标')}</a>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="weigh" class="control-label col-xs-12 col-sm-2">{:__('Weigh')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="weigh" name="row[weigh]" value="0" data-rule="required" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="remark" class="control-label col-xs-12 col-sm-2">{:__('规则条件')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea class="form-control" id="condition" name="row[condition]"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="remark" class="control-label col-xs-12 col-sm-2">{:__('备注')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea class="form-control" id="remark" name="row[remark]"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[status]', ['normal'=>__('Normal'), 'hidden'=>__('Hidden')])}
+        </div>
+    </div>
+    <div class="form-group hidden layer-footer">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+{include file="auth/rule/tpl" /}

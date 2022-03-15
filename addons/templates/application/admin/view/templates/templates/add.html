@@ -1,0 +1,74 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label for="c-module" class="control-label col-xs-12 col-sm-2">模板类型:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <select id="c-module" data-rule="required" class="form-control selectpicker" name="row[module]">
+                <option  value="1" >模块模板</option>
+                <option  value="0" >插件模板</option>
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-name" class="control-label col-xs-12 col-sm-2">{:__('模板标识')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text" value="">
+            <span class="help-block">需要用英文字母(不能修改)</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-title" class="control-label col-xs-12 col-sm-2">{:__('模板名称')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="">
+            <span class="help-block"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-thumb" class="control-label col-xs-12 col-sm-2">缩略图:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-thumb" class="form-control" size="50" name="row[thumb]" type="text" value="">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-thumb" class="btn btn-danger plupload" data-input-id="c-thumb" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-thumb"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-thumb" class="btn btn-primary fachoose" data-input-id="c-thumb" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-thumb"></ul>
+            <span class="help-block">尺寸要求是375*250，可以留空</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-author" class="control-label col-xs-12 col-sm-2">{:__('开发者名称')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-author" data-rule="required" class="form-control" name="row[author]" type="text" value="{$auth->username}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-intro" class="control-label col-xs-12 col-sm-2">{:__('模板介绍')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-intro" data-rule="required" class="form-control" name="row[intro]" type="text" value="">
+            <span class="help-block">可以介绍适用于那些模块或插件</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-version" class="control-label col-xs-12 col-sm-2">{:__('版本号')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-version" data-rule="required" class="form-control" name="row[version]" type="text" value="1.0.0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-site" class="control-label col-xs-12 col-sm-2">{:__('演示地址')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-site"  class="form-control" name="row[site]" type="text" value="" placeholder="可空">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

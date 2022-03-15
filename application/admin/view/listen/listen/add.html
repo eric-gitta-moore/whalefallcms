@@ -1,0 +1,178 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <div class="radio">
+            {foreach name="statusList" item="vo"}
+            <label for="row[status]-{$key}"><input id="row[status]-{$key}" name="row[status]" type="radio" value="{$key}" {in name="key" value="0"}checked{/in} /> {$vo}</label> 
+            {/foreach}
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Cover_image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-cover_image" class="form-control" size="50" name="row[cover_image]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-cover_image" class="btn btn-danger plupload" data-input-id="c-cover_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-cover_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-cover_image" class="btn btn-primary fachoose" data-input-id="c-cover_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-cover_image"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-cover_image"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Horizon_image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-horizon_image" class="form-control" size="50" name="row[horizon_image]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-horizon_image" class="btn btn-danger plupload" data-input-id="c-horizon_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-horizon_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-horizon_image" class="btn btn-primary fachoose" data-input-id="c-horizon_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-horizon_image"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-horizon_image"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Big_image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-big_image" class="form-control" size="50" name="row[big_image]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-big_image" class="btn btn-danger plupload" data-input-id="c-big_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-big_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-big_image" class="btn btn-primary fachoose" data-input-id="c-big_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-big_image"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-big_image"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Log_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-log_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[log_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Author')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-author" data-rule="required" class="form-control" name="row[author]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Summary')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-summary" data-rule="required" class="form-control " rows="5" name="row[summary]" cols="50"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Switch')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <input  id="c-switch" name="row[switch]" type="hidden" value="0">
+            <a href="javascript:;" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch" data-yes="1" data-no="0" >
+                <i class="fa fa-toggle-on text-success fa-flip-horizontal text-gray fa-2x"></i>
+            </a>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Free_type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-free_type" data-rule="required" class="form-control selectpicker" name="row[free_type]">
+                {foreach name="freeTypeList" item="vo"}
+                    <option value="{$key}" {in name="key" value="1"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Vip_type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-vip_type" data-rule="required" class="form-control selectpicker" name="row[vip_type]">
+                {foreach name="vipTypeList" item="vo"}
+                    <option value="{$key}" {in name="key" value="1"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Last_chapter')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-last_chapter" class="form-control" name="row[last_chapter]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Start_pay')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-start_pay" class="form-control" name="row[start_pay]" type="number" value="3">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Readnum')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-readnum" class="form-control" name="row[readnum]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Collectnum')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-collectnum" class="form-control" name="row[collectnum]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Likenum')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-likenum" class="form-control" name="row[likenum]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('New_switch')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <input  id="c-new_switch" name="row[new_switch]" type="hidden" value="0">
+            <a href="javascript:;" data-toggle="switcher" class="btn-switcher" data-input-id="c-new_switch" data-yes="1" data-no="0" >
+                <i class="fa fa-toggle-on text-success fa-flip-horizontal text-gray fa-2x"></i>
+            </a>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Recommend_switch')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <input  id="c-recommend_switch" name="row[recommend_switch]" type="hidden" value="0">
+            <a href="javascript:;" data-toggle="switcher" class="btn-switcher" data-input-id="c-recommend_switch" data-yes="1" data-no="0" >
+                <i class="fa fa-toggle-on text-success fa-flip-horizontal text-gray fa-2x"></i>
+            </a>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Chargenum')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-chargenum" class="form-control" name="row[chargenum]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Category_ids')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-category_ids" data-rule="required" data-source="category/selectpage" data-params='{"custom[type]":"listen"}' data-multiple="true" class="form-control selectpage" name="row[category_ids]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

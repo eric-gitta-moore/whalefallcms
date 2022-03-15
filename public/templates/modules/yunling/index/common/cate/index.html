@@ -1,0 +1,109 @@
+{extend name="common/base1"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/bootstrap-paginate.css" />
+<style>
+    .books-list > .item > a .body .text {
+        white-space: inherit;
+    }
+</style>
+{/block}
+
+{block name="search_nav"}
+<div class="navbar flt">
+    <nav class="tab-box">
+        <div class="item">
+            <a href="/">首页</a>
+        </div>
+        <div class="item">
+            <a href="{:url('index/' . $module . '.cate/index')}" class="active">分类</a>
+        </div>
+    </nav>
+    <div class="action">
+        <a href="{:url('index/' . $module . '.search/index')}" class="btn">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M35.94 35.94l7.71 7.71" fill="none" stroke="#fff" stroke-width="3"></path><circle cx="23.3" cy="23.3" r="18.5" fill="none" stroke="#fff" stroke-width="3"></circle><path d="M11.72 23.15A12 12 0 0 1 24.5 12" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3"></path></svg>
+        </a>
+    </div>
+</div>
+{/block}
+
+{block name="subnav"}
+<nav class="nav-row-cate mt-navbar">
+    <div class="shrink collect-box condition-box" style="display: none;">
+        <div class="row container close-type">
+            <div class="item"><a href="javascript:void(0);" {if $cate==-1}class="active"{/if}>全部</a></div>
+            {volist name="cate_data" id="v" length="3"}
+            <div class="item"><a href="{:url($raw_path,['cate' => $v['id'] ] ) }" {if $cate==$v['id']}class="active"{/if}>{$v.name}</a></div>
+            {/volist}
+        </div>
+    </div>
+    <div class="shrink open-box condition-box" style="display: block;">
+        <div class="row has-label">
+            <label class="label"><span>分类</span></label>
+            <div class="container open-type">
+                <div class="item"><a href="{:url($raw_path,['cate' => -1, 'end' => $end, 'attribute' => $attribute ] ) }" {if $cate==-1}class="active"{/if}>全部</a></div>
+
+                {volist name="cate_data" id="v"}
+                <div class="item"><a href="{:url($raw_path,['cate' => $v['id'], 'end' => $end, 'attribute' => $attribute ] ) }" {if $cate==$v['id']}class="active"{/if}>{$v.name}</a></div>
+                {/volist}
+            </div>
+        </div>
+        <div class="row has-label">
+            <label class="label"><span>状态</span></label>
+            <div class="container">
+                <div class="item"><a href="{:url($raw_path,['end' => -1, 'attribute' => $attribute,'cate' => $cate ] ) }" {if $end==-1}class="active"{/if}>全部</a></div>
+                <div class="item"><a href="{:url($raw_path,['end' => 0, 'attribute' => $attribute,'cate' => $cate ] ) }" {if $end==0}class="active"{/if}>连载</a></div>
+                <div class="item"><a href="{:url($raw_path,['end' => 1, 'attribute' => $attribute,'cate' => $cate ] ) }" {if $end==1}class="active"{/if}>完结</a></div>
+            </div>
+        </div>
+        <div class="row has-label">
+            <label class="label"><span>属性</span></label>
+            <div class="container">
+                <div class="item"><a href="{:url($raw_path,['attribute' => -1, 'end' => $end,'cate' => $cate ] ) }" {if $attribute==-1}class="active"{/if}>全部</a></div>
+                <div class="item"><a href="{:url($raw_path,['attribute' => 0, 'end' => $end,'cate' => $cate ] ) }" {if $attribute==0}class="active"{/if}>免费</a></div>
+                <div class="item"><a href="{:url($raw_path,['attribute' => 1, 'end' => $end,'cate' => $cate ] ) }" {if $attribute==1}class="active"{/if}>付费</a></div>
+            </div>
+        </div>
+        {php}/*
+        <div class="row has-label">
+            <label class="label"><span>时间</span></label>
+            <div class="container">
+                <div class="item"><a href="{:url($raw_path,['attribute' => -1, 'end' => $end,'cate' => $cate ] ) }" {if $attribute==-1}class="active"{/if}>全部</a></div>
+                <div class="item"><a href="{:url($raw_path,['attribute' => 0, 'end' => $end,'cate' => $cate ] ) }" {if $attribute==0}class="active"{/if}>免费</a></div>
+                <div class="item"><a href="{:url($raw_path,['attribute' => 1, 'end' => $end,'cate' => $cate ] ) }" {if $attribute==1}class="active"{/if}>付费</a></div>
+            </div>
+        </div>
+        */{/php}
+    </div>
+    <div class="action" id="shrink">
+        <a href="javascript:void(0);" class="opened"><span class="text">收起</span><i class="icon-arrow"></i></a>
+    </div>
+</nav>
+{/block}
+
+{block name="content"}
+<div class="books-list mt-10 mb-tabar" id="html_box">
+    {volist name="query_data" id="vo"}
+        <div class="item">
+            <a href="{:url('index/' . $module . '.book/detail' , ['id' => $vo['id'] ] ) }">
+                <div class="cover">
+                    <img width="160" height="90" src="{:img($vo['cover_image'])}">
+                </div>
+                <div class="body">
+                    <div class="title">{$vo.name}</div>
+                    <div class="text">作者：{$vo.author.name}</div>
+                    <div class="text">{$vo.summary|mb_substr=###,0,75}</div>
+                    <div class="bottom">
+                        <span class="col"><i class="icon-gray-hot"></i>{$vo.readnum}</span>
+                        <span class="col"><i class="icon-hand"></i>{$vo.likenum}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {/volist}
+    <div style="text-align: center">
+        {$query_data -> render()}
+    </div>
+</div>
+{/block}

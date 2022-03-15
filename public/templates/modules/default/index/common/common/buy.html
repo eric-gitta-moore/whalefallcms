@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="__STATIC_PATH__/css/buychapter.css?v={$site.version}">
+<div class="yunling-reader-chapter-order">
+    <div class="yunling-elevation-10 yunling-margin-vertical-lg yunling-card">
+        <div class="yunling-card-header">
+            <div>
+                <p>本章价格：{$chapter.money}{$site.score_name}</p>
+                <p><small>开通VIP，海量漫画免费看</small></p>
+            </div>
+        </div>
+        <div class="yunling-card-content yunling-card-content-padding">
+            <div class="yunling-list">
+                <ul>
+                    <li>
+                        <div class="yunling-item-content">
+                            <div class="yunling-item-inner">
+                                <div>自动购买下一章节</div>
+                                <span id="auto_pay_btn" class="switch-off" style="zoom: 0.8"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="yunling-item-content">
+                            <div class="yunling-item-inner"><a class="yunling-button-red" id="buy_btn">单独购买本章节</a></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="yunling-card-footer">
+            <a class="yunling-link" id="my_score_btn">
+                <span class="yunling-text-color-gray yunling-font-size-12" style="vertical-align: middle;">余额：{:isset($user_info['score'])?$user_info['score']:0}{$site.score_name}</span>
+            </a>
+            <div class="yunling-display-flex">
+                <a class="yunling-link" id="open_vip_btn">
+                    <span class="yunling-font-size-12 yunling-text-underline">开通VIP，免费阅读</span>
+                </a>
+                <span class="yunling-font-size-12 yunling-line-height-3x"> / </span>
+                <a class="yunling-link">
+                    <span class="yunling-font-size-12 yunling-text-underline" id="share_btn">分享赚书币</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

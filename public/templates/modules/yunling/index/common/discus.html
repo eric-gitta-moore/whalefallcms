@@ -1,0 +1,27 @@
+{//<!-- 社会化评论插件 start -->}
+<div class="ds-thread bm-box mt-10 mb-10" id="ds-thread"></div>
+{/*
+// data-key:你目标网站文章的唯一标识,通常为网站的主键ID或唯一ID,默认将通过当前页面地址的MD5值
+// data-title:当前文章的标题,默认为当前网页标题
+// data-url:当前文章的链接,默认为当前地址栏URL
+*/}
+{//(document.location.protocol == 'https:' ? 'https:' : 'http:') + '//cdn.fastadmin.net}
+<script type="text/javascript">
+    var commentOptions = {name: 'yunling', site: '云凌工作室', domain: '{$site.domain}'};
+    {/*
+    //name: 后台评论站点管理中配置的站点名称(唯一)
+    //site: 站点标题,任意修改
+    //domain: 评论插件系统的完整URL,如果将script部署在其它网站,请务必修改,如果部署在二级目录,注意添加上相应目录,注意不要以/结尾
+    //static: 评论插件系统的静态文件前缀URL,如果你的静态资源文件没有使用CDN部署,请保持和domain值相同
+    */
+    }
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = '/assets/addons/comment/js/embed.min.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+{//<!-- 社会化评论插件 end -->}

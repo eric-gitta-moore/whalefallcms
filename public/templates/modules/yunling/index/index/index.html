@@ -1,0 +1,82 @@
+{extend name="index/base_index"}
+
+{block name="content"}
+{//指定的每个分类都循环出几个}
+{volist name="goods" id="cate"}
+<div class="bm-box mt-10">
+    <div class="head">
+        <div class="title dot">{$cate.name}</div>
+        <div class="pull-right">
+            <a href="{:url('index/' . $module . '.cate/index', ['cate' => $cate['id'] ] ) }">
+                更多 <svg width="7" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 24"><title>right-arrow</title><path d="M1.91 1.93L12.06 12 1.91 22" fill="none" stroke="#ff5420" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="books-row">
+        {volist name="$cate[$module]" id="vo" length="6"}
+        <div class="item">
+            <a href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}">
+                <img class="lazy" src="{:img($site['loading_image'])}" data-original="{:img($vo['cover_image'])}" style="width:110px;height:146px;" />
+                <div class="title">{$vo.name}</div>
+                <div class="text">{$vo.last_chapter}</div>
+            </a>
+        </div>
+        {/volist}
+    </div>
+</div>
+{/volist}
+
+
+{if $news!==false}
+<div class="bm-box mt-10">
+    <div class="head">
+        <div class="title dot">最近更新</div>
+        <div class="pull-right">
+            <a href="">
+                更多 <svg width="7" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 24">
+                <title>right-arrow</title>
+                <path d="M1.91 1.93L12.06 12 1.91 22" fill="none" stroke="#ff5420" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="books-row">
+        {volist name="$news" id="vo"}
+        <div style="width:100%;padding-bottom: 20px;border-bottom: 1px solid #ddd;position:relative;">
+            <img class="lazy" src="{:img($site['loading_image'])}" data-href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}" onclick="javascript:window.location=this.getAttribute('data-href')" data-original="{:img($vo['cover_image'])}" style="width:88px;height:110px;float:left;margin:10px;" alt="{$vo.name}" title="{$vo.name}" />
+            <div class="title" style="margin-top: 15px;font-size: 17px;color: #000;">{$vo.name}</div>
+            <div class="text" style="margin-top: 5px;font-size: 14px;color: #666666;">{$vo.author.name}</div>
+            <div class="text" style="margin-top: 5px;font-size: 14px;color: #666666;height:40px;text-overflow: ellipsis;overflow: hidden; word-wrap: break-word;word-break: break-all;">{$vo.summary}</div>
+            <div data-href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}" onclick="javascript:window.location=this.getAttribute('data-href')" style="position: absolute;top: 10px;right: 10px;padding: 8px;border: 1px solid #FF9800;border-radius: 5px;color: #FF9800;">立即阅读</div>
+        </div>
+        {/volist}
+    </div>
+</div>
+{/if}
+
+{if $free_books!==false}
+<div class="bm-box mt-10">
+    <div class="head">
+        <div class="title dot">免费专区</div>
+        <div class="pull-right">
+            <a href="">
+                更多 <svg width="7" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 24">
+                <title>right-arrow</title>
+                <path d="M1.91 1.93L12.06 12 1.91 22" fill="none" stroke="#ff5420" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="books-row">
+        {volist name="$free_books" id="vo"}
+        <div style="width:100%;padding-bottom: 20px;border-bottom: 1px solid #ddd;position:relative;">
+            <img class="lazy" src="{:img($site['loading_image'])}" data-href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}" onclick="javascript:window.location=this.getAttribute('data-href')" data-original="{:img($vo['cover_image'])}" style="width:88px;height:110px;float:left;margin:10px;" alt="{$vo.name}" title="{$vo.name}" />
+            <div class="title" style="margin-top: 15px;font-size: 17px;color: #000;">{$vo.name}</div>
+            <div class="text" style="margin-top: 5px;font-size: 14px;color: #666666;">{$vo.author.name}</div>
+            <div class="text" style="margin-top: 5px;font-size: 14px;color: #666666;height:40px;text-overflow: ellipsis;overflow: hidden; word-wrap: break-word;word-break: break-all;">{$vo.summary}</div>
+            <div data-href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}" onclick="javascript:window.location=this.getAttribute('data-href')" style="position: absolute;top: 10px;right: 10px;padding: 8px;border: 1px solid #FF9800;border-radius: 5px;color: #FF9800;">立即阅读</div>
+        </div>
+        {/volist}
+    </div>
+</div>
+{/if}
+
+{/block}

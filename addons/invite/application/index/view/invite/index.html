@@ -1,0 +1,65 @@
+<style>
+    table.table-invite > tbody > tr > td {
+        vertical-align: middle;
+    }
+</style>
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {include file="common/sidenav" /}
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default panel-page">
+                <div class="panel-heading">
+                    <h2>邀请好友</h2>
+                </div>
+                <div class="panel-body" style="padding:0;">
+                    <div class="alert alert-warning-light">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>你可以将你的邀请链接发送给你的朋友，邀请TA的加入，注册成功后你将获得 <b>{$inviteConfig.rewardscore}</b> 积分，TA获得 <b>{$inviteConfig.invitedscore}</b> 积分</p>
+                                <div class="input-group input-group-md">
+                                    <div class="icon-addon addon-md">
+                                        <input type="text" placeholder="邀请链接" onfocus="this.select();" value="{:addon_url('invite/index/index',[':id'=>$user['id']],false,true)}" class="form-control input-md">
+                                    </div>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success btn-invite" type="button" data-clipboard-text="{:addon_url('invite/index/index',[':id'=>$user['id']],false,true)}">复制链接</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-invite">
+                        <thead>
+                        <tr>
+                            <th>头像</th>
+                            <th>用户名</th>
+                            <th>加入时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {volist name='inviteList' id='invite'}
+                        <tr>
+                            <td>
+                                <a href="{$invite.invited.url}">
+                                    <span class="avatar-img">
+                                        <img src="{$invite.invited.avatar}" class="{$invite.invited.nickname}">
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{$invite.invited.url}">
+                                    {$invite.invited.nickname}
+                                </a>
+                            </td>
+                            <td>{$invite.createtime|datetime}</td>
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                    <div class="pager">{$inviteList->render()}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

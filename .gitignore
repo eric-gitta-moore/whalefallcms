@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+### ThinkPHP template
+# gitignore template for ThinkPHP v5.0.4
+# website: http://www.thinkphp.cn/
+
+# Logs and Cache files
+/runtime/
+
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen

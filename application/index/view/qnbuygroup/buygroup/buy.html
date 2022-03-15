@@ -1,0 +1,557 @@
+<style>
+    .guclearfix:after {
+        clear: both;
+    }
+
+    .guclearfix:before, .guclearfix:after {
+        content: " ";
+        display: table;
+    }
+
+    .chargebox {
+        width: 100%;
+        margin: 0px auto 30px auto;
+        padding-inline-start: 0px;
+    }
+
+    .chargebox .gurow {
+        padding: 15px 0;
+        float: left;
+        width: 100%;
+    }
+
+    .chargebox .label {
+        float: left;
+        width: 70px;
+        color: #959595;
+        text-align: left;
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    .chargebox .package-list {
+        margin-left: -7px
+    }
+
+    .chargebox .package-list li {
+        float: left;
+        margin: 7px;
+        padding: 8px;
+        width: 120px;
+        border: 1px solid #d7d7d7;
+        border-radius: 3px;
+        text-align: center;
+        cursor: pointer
+    }
+
+    .chargebox .package-list li > a {
+        text-decoration: none
+    }
+
+    .chargebox .package-list li > a:hover {
+        color: #313131
+    }
+
+    .chargebox .package-list li span {
+        font-weight: bold
+    }
+
+    .chargebox .package-list li h4 {
+        color: #959595
+    }
+
+    .chargebox .package-list li.on {
+        border-color: #fc4e53;
+        background: url("__CDN__/assets/addons/qnbuygroup/img/jb.png") right bottom no-repeat
+    }
+
+    .chargebox .package-list li.on .amount, .chargebox .package-list li.on .price {
+        color: #fc4e53
+    }
+
+    .chargebox .charge-custom {
+        height: 32px;
+        line-height: 32px
+    }
+
+    .chargebox .czcontent {
+        float: left;
+        padding-left: 20px;
+        width: auto;
+        text-align: left
+    }
+
+    .chargebox .user-info .balance-label {
+        float: right
+    }
+
+    .chargebox .charge-source-list {
+        margin-left: -10px
+    }
+
+    .chargebox .charge-source-list > li {
+        position: relative;
+        float: left;
+        margin: 5px 20px 5px 10px;
+        background: #FFF;
+        width: 130px;
+        height: 46px;
+        border: 1px solid #d7d7d7;
+        border-radius: 3px;
+        text-align: center;
+        cursor: pointer;
+        line-height: 46px;
+    }
+
+    .chargebox .charge-source-list > li.active {
+        border-color: #fc4e53
+    }
+
+    .chargebox .charge-source-list > li.active:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: url("__CDN__/assets/addons/qnbuygroup/img/jb.png") 100% 100% no-repeat;
+        content: ''
+    }
+
+    .chargebox .charge-source-list > li img {
+        max-width: 100%
+    }
+
+
+    .chargebox .charge-submit .czcontent {
+        margin-left: 100px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        width: 650px
+    }
+
+    .chargebox ul {
+        list-style: none;
+    }
+
+    .btns {
+        display: inline;
+        padding: 13px 90px;
+        border-radius: 3px;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        line-height: 45px;
+        background: #e53935;
+        background: -webkit-linear-gradient(to left, #e53935, #e35d5b);
+        background: linear-gradient(to left, #e53935, #e35d5b);
+    }
+
+    .btns:hover {
+        background-color: #ff7579;
+        color: #fff;
+        text-decoration: none
+    }
+
+    #ewm {
+        margin: 10px 0px 0px 0px;
+        float: left
+    }
+
+    #ewm img, #ewm canvas {
+        border: 1px solid #EAEAEA;
+        padding: 3px;
+        max-height: 250px;
+        max-width: 250px;
+    }
+
+    #ewm canvas {
+        padding: 26px
+    }
+
+    .groheader span.uhead {
+        position: relative;
+        height: 80px;
+        display: block;
+        width: 80px;
+        margin: 15px auto 0 auto
+    }
+
+    .groheader span.uhead b {
+        display: inline-block;
+        border-radius: 55px;
+        overflow: auto;
+        z-index: 1;
+        border: 2px solid #eee;
+        background-color: #f1f1f1;
+    }
+
+    .groheader span.uhead b img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        vertical-align: middle;
+        position: relative
+    }
+
+    .groheader span.uhead img.hi {
+        position: absolute;
+        right: -10px;
+        top: 0;
+        width: 18px;
+        z-index: 999;
+    }
+
+    .groheader a.usnmae {
+        display: block;
+        line-height: 37px;
+        font-size: 17px;
+        color: #333;
+    }
+
+    .groheader .current {
+        font-size: 13px
+    }
+
+    .swgroup .mygro {
+        margin-top: 30px;
+    }
+
+    .swgroup .mygro li {
+        border-bottom: 1px dashed #E3E3E3;
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+    }
+
+    .swgroup .mygro li .dow {
+        color: #999
+    }
+
+    .swgroup .mygro li .pup {
+        font-size: 16px
+    }
+
+    .swgroup .mygro li .pup s {
+        text-decoration: line-through !important
+    }
+
+    .swgroup .mygro li .rsw {
+        float: right;
+        margin-top: 10px;
+    }
+
+    .swgroup .mygro li .rsw a {
+        color: #e35d5b;
+        border: 1px solid #e35d5b;
+        padding: 1px 5px;
+        float: right;
+        border-radius: 2px;
+        margin-left: 12px;
+        font-size: 14px
+    }
+
+    .swgroup .mygro li .rsw a.hightline {
+        background: #e35d5b;
+        color: #FFF
+    }
+
+    .yxz {
+        color: #C30
+    }
+
+    .cccs {
+        color: #999
+    }
+
+    .charge-source {
+        margin-top: 15px;
+    }
+
+    #countNum {
+        font-size: 30px;
+        color: #ff7f01;
+        margin-right: 4px;
+        font-family: Tahoma, Helvetica, Arial, '宋体', sans-serif;
+    }
+
+    #countNums {
+        font-size: 16px;
+        color: #ff7f01;
+        font-family: Microsoft Yahei;
+        line-height: 60px;
+    }
+
+    #countNums img {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin: 19px 5px 0 0;
+    }
+
+    .czcontents {
+        line-height: 50px
+    }
+
+    .line-height50 {
+        line-height: 50px
+    }
+
+    .kkccc {
+        font-weight: 500;
+        color: #CCC;
+        margin: 0 5px
+    }
+
+    .subboxs {
+        float: left
+    }
+
+    .zffs {
+        background: url("__CDN__/assets/addons/qnbuygroup/img/ico2s.png") left no-repeat;
+        padding-left: 30px;
+    }
+
+    .jine {
+        background: url("__CDN__/assets/addons/qnbuygroup/img/ico1s.png") left no-repeat;
+        padding-left: 30px;
+    }
+
+    .hg {
+        background: url("__CDN__/assets/addons/qnbuygroup/img/ico3.png") left no-repeat;
+        padding-left: 30px;
+    }
+
+
+    .service-list {
+        width: 100%;
+        cursor: pointer;
+        box-sizing: border-box;
+        float: left;
+        border-radius: 3px;
+        border: 1px solid #E9E9E9;
+        box-shadow: 0 0 20px 0px #E6E6E6;
+        background: url("__CDN__/assets/addons/qnbuygroup/img/floor-hot-bg.png") 0 -50px repeat-x; /*background:-moz-linear-gradient(top,#eee 0,#fff 100%);{ADDONVAR:SN};background:-webkit-linear-gradient(top,#eee 0,#fff 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType=0);*/
+        text-align: center;
+        padding: 20px 5px 20px 20px;
+        margin-top: 20px;
+        position: relative;
+    }
+
+    .mr_35 {
+        margin-right: 25px;
+    }
+
+    .service-list > em {
+        display: block;
+        overflow: hidden;
+        margin: 10px 10px 0 0px; /*margin: 0 20px 0 0;*/
+        padding: 0;
+        float: left;
+        border-radius: 50%;
+        background-color: #FFF;
+        width: 45px;
+        height: 45px;
+    }
+
+    .chargebox .col-md-4 {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .service-list > em img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .service-list > .kekecent > b {
+        font-size: 24px;
+        height: 40px;
+        line-height: 40px;
+        display: block;
+        text-align: left;
+    }
+
+    .service-list > .kekecent p {
+        display: block;
+        line-height: 20px;
+        color: #666;
+        font-size: 14px;
+        padding-top: 2px;
+        text-align: left
+    }
+
+    .service-list > p.ms {
+        color: #999;
+        text-align: left
+    }
+
+    .keketq {
+        float: left;
+        margin: 13px 10px 0px auto;
+        text-align: center;
+        background: #F5F5F5;
+        border-bottom: 1px solid #F0F0F0;
+        height: auto !important;
+        line-height: 30px;
+        padding: 0px 10px;
+        border-radius: 0px;
+    }
+
+    .service-list > p.kt {
+        text-align: center;
+        border: 1px solid #ff9f41;
+        width: 80%;
+        margin: 30px auto 0 auto !important;
+        color: #ff9f41;
+        height: 40px;
+        line-height: 40px;
+        padding: 0;
+        font-size: 16px;
+        border-radius: 30px;
+    }
+
+    .service-list .kekecent {
+        float: left;
+        margin-top: 5px;
+    }
+
+    .service-list #tqs {
+        display: none
+    }
+
+    .czcontents .quanxian {
+        padding-left: 120px;
+    }
+
+    .guclearfix .actives {
+        box-shadow: 0 0 20px #FFF0EC;
+        border: 1px solid #FADABA; /**/
+        background: url("__CDN__/assets/addons/qnbuygroup/img/floor-hot-bg1.png") 0 -50px repeat-x; /*box-shadow: 0 0 20px #FDEAE8; border:1px solid #FDEAE8*/
+    }
+
+    .guclearfix .actives:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: url("__CDN__/assets/addons/qnbuygroup/img/jb.png") 100% 100% no-repeat;
+        content: ''
+    }
+
+    .guclearfix .actives .tq {
+        background: #ffeee5;
+        border-bottom: 1px solid #FCDEDC
+    }
+
+    .charge-submit_btn {
+        margin: 1.5rem 0 0.8rem 1rem;
+    }
+
+    .btn-buygroup {
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0;
+    }
+</style>
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {include file="common/sidenav" /}
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default panel-recharge">
+                <div class="panel-body">
+                    <h2 class="page-header">{:__('用户组购买')}</h2>
+                    <div class="alert alert-info-light">
+                        {$addonConfig.buygrouptips}
+                    </div>
+                    <div class="clearfix"></div>
+                    <form action="{:url('qnbuygroup.buygroup/submit')}" method="post">
+                        <input type="hidden" name="buygroupid" id="buygroupid" value="{$defaultvipset.id}">
+                        <input type="hidden" name="paytype" value="{$addonConfig.defaultpaytype}">
+                        <div class="chargebox guclearfix" id="chargebox">
+                            {foreach name="vipsetList" id="vipset"}
+                            <div class="col-md-4">
+                                <div class="service-list {eq name='defaultvipset.id' value='$vipset.id'}actives{/eq} "
+                                     data-money="{$vipset.amount}" data-time="{$vipset.exp}" data-id="{$vipset.id}">
+                                    <em class="em"><img src="__CDN__/assets/addons/qnbuygroup/img/{$key + 1}.png" alt=""></em>
+                                    <div class="kekecent">
+                                        <b>{$vipset.groupname}</b>
+                                        <p class="ms">¥{$vipset.amount}元 / 有效期 {$vipset.exp}天</p>
+                                    </div>
+
+                                    <div class="quanxian" style="display:none">
+                                        {foreach name="vipset.description" id="d"}
+                                        <span class="keketq">{$d}</span>
+                                        {/foreach}
+                                    </div>
+                                </div>
+                            </div>
+                            {/foreach}
+                            <div class="boxs">
+                                <div class="gurow charge-source guclearfix" style=" border-bottom:1px dashed #eee; ">
+                                    <div class="subboxs">
+                                        <div class="label hg">尊贵特权</div>
+                                        <div class="czcontents line-height50">
+                                            <div class="quanxian" id="viewtq">
+                                                {foreach name="defaultvipset.description" id="d"}
+                                                <span class="keketq">{$d}</span>
+                                                {/foreach}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gurow charge-source guclearfix" style=" border-bottom:1px dashed #eee; ">
+
+                                    <div class="subboxs">
+                                        <div class="label jine"> 应付金额</div>
+                                        <div class="czcontent line-height50">
+                                            <span id="countNum">{$defaultvipset.amount}</span>
+                                            元 <b class="kkccc">/</b> <span class="cccs">有效期 : </span> <span
+                                                id="validity">{$defaultvipset.exp}</span><span id="t">天</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gurow charge-source guclearfix" style=" border-bottom:1px dashed #eee">
+                                    <div class="label zffs">
+                                        支付方式
+                                    </div>
+                                    <div class="czcontent">
+                                        <ul id="charge-source-list" class="charge-source-list clearfix"
+                                            style="margin-bottom:15px;">
+                                            {foreach name="paytypeList" id="paytype"}
+                                            <li class="item {:$paytype.default?'active':''}"
+                                                data-value="{$paytype.value}">
+                                                <a href="javascript:void(0);">
+                                                    <img src="__CDN__{$paytype.image}">
+                                                </a>
+                                            </li>
+                                            {/foreach}
+                                        </ul>
+                                        <div id="ewm"></div>
+                                    </div>
+                                    <input type="hidden" name="zftype" id="zftype" value="1">
+
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 charge-submit_btn">
+                                    <input type="submit" class="btn btn-success btn-buygroup btn-block"
+                                           value="{:__('立即支付')}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

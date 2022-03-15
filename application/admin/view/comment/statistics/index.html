@@ -1,0 +1,193 @@
+<style>
+    #datefilter {
+        margin:10px 0;
+    }
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div class="row">
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3>￥{$statistics.todaycomment}</h3>
+                                    <p>今日评论</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-comments"></i>
+                                </div>
+                                <a href="comment/post/index?createtime={:\\fast\\Date::unixtime()}&createtime-operate=>" title="今日评论" class="small-box-footer btn-addtabs">
+                                    查看更多 <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-green">
+                                <div class="inner">
+                                    <h3>{$statistics.yesterdaycomment}</h3>
+
+                                    <p>昨日发表评论数</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-navicon"></i>
+                                </div>
+                                <a href="comment/post/index" title="昨日发表评论数" class="small-box-footer btn-addtabs">
+                                    查看更多 <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-yellow">
+                                <div class="inner">
+                                    <h3>{$statistics.todayarticle}</h3>
+
+                                    <p>今日文章数</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-bullhorn"></i>
+                                </div>
+                                <a href="comment/post/index" title="今日发布的文章" class="small-box-footer btn-addtabs">
+                                    查看更多 <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-red">
+                                <div class="inner">
+                                    <h3>{$statistics.todayreport}</h3>
+
+                                    <p>待处理举报数</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-warning"></i>
+                                </div>
+                                <a href="comment/report/index?status=unsettled" title="未处理举报数" class="small-box-footer btn-addtabs">
+                                    查看更多 <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box bg-aqua">
+                                <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">总评论数</span>
+                                    <span class="info-box-number">￥{$statistics.totalcomment}</span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 20%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        所有评论的数量
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box bg-green">
+                                <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">总站点数</span>
+                                    <span class="info-box-number">{$statistics.totalsite}</span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 20%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        所有的站点数量
+                                      </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box bg-yellow">
+                                <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">总文章数</span>
+                                    <span class="info-box-number">{$statistics.totalarticle}</span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 20%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        所有的文章数量
+                                      </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box bg-red">
+                                <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">总未处理举报数</span>
+                                    <span class="info-box-number">{$statistics.totalreport}</span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 20%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                    所有未处理举报数量
+                                  </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="page-header">
+                                <h4 class="no-margin">订单趋势</h4>
+                            </div>
+                            <div id="datefilter">
+                                <form action="" role="form" novalidate class="form-inline">
+                                    <a href="javascript:;" class="btn btn-primary btn-refresh"><i class="fa fa-refresh"></i></a>
+                                    <a href="javascript:;" class="btn btn-success btn-filter">{:__('Today')}</a>
+                                    <a href="javascript:;" class="btn btn-success btn-filter">{:__('Yesterday')}</a>
+                                    <a href="javascript:;" class="btn btn-success btn-filter">{:__('Last 7 Days')}</a>
+                                    <a href="javascript:;" class="btn btn-success btn-filter">{:__('Last 30 Days')}</a>
+                                    <a href="javascript:;" class="btn btn-success btn-filter">{:__('Last month')}</a>
+                                    <a href="javascript:;" class="btn btn-success btn-filter">{:__('This month')}</a>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" class="form-control input-inline datetimerange" placeholder="指定日期" style="width:270px;" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="echart" style="height:400px;width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

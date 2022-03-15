@@ -1,0 +1,32 @@
+<div style="width:200px;margin: 0px auto 20px auto;">
+    <span style="display: block;width: 100%;text-align: center;font-size: 14px;color: #666666;"></br>云凌工作室</span>
+</div>
+<div style="clear:both;height:1.4rem;"></div>
+<div class="backtop" id="icon-top" style="display:none">
+    <a href="javascript:void(0);" class="top">顶部</a>
+</div>
+
+{:$ad_global_bottom.code?:''}
+{$site.analyse_code}
+
+<div id="footer-bar" class="tabar flb" style="z-index: 10">
+    <nav class="nav hls1">
+        <div class="item">
+            <a href="{:url('index/bookcase/index')}" {if $cmod=="bookcase"}class="active"{/if}>
+                <i class="icon-book"></i><div class="title">书架</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="/" {if $cmod=="portal"}class="active"{/if}>
+                <i class="icon-home"></i><div class="title">首页</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="{if $is_login}{:url('index/user/index')}{else /}{:url('index/user/login')}{/if}" {if $cmod=="center"}class="active"{/if}>
+                <i class="icon-user"></i><div class="title">我的</div>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<script src="__CDN__/assets/js/require{$Think.config.app_debug?'':'.min'}.js" data-main="__CDN__/assets/js/require-frontend{$Think.config.app_debug?'':'.min'}.js?v={$site.version|htmlentities}"></script>

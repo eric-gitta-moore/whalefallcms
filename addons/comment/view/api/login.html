@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>请稍后</title>
+    <script>
+        window.onload = function () {
+            var opener = window.opener;
+            var closeWindow = function () {
+                if (opener)
+                    return window.close();
+                window.history.go(-2);
+            };
+
+            try {
+                if (!opener)
+                    return;
+                var msg = JSON.stringify({
+                    state: 'login:ok'
+                });
+
+                opener.postMessage(msg, '*');
+            } finally {
+                if (opener)
+                    setTimeout(closeWindow, 300);
+            }
+        };
+    </script>
+</head>
+<body>
+<img src="__ADDON__/images/loading.gif" style="display: block; margin: 50px auto;">
+</body>
+</html>

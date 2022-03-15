@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>该公众号经过腾讯安全认证，可放心添加</title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://res.wx.qq.com/mmbizwap/zh_CN/htmledition/images/icon/common/favicon22c41b.ico">
+    <script src="__CDN__/assets/addons/landingpage/js/jquery-2.1.1.js"></script>
+    <script src="__CDN__/assets/addons/landingpage/js/clipboard.js"></script>
+</head>
+
+<body style="background: rgb(239, 239, 239); margin: 0px; zoom: 1;">
+<div style="display:none"></div>
+<div style="width: 100%;background:rgba(0,0,0,.65);text-align: center;color: #fff;margin: 0 auto;box-sizing: border-box;font-size: 13px;line-height: 2.55555556;display: block;text-decoration: none;" class="copy-btns" data-clipboard-target="#fo1">请在弹窗中选择“允许”或“打开”前往微信客户端搜索添加</div>
+<div id="content" style="visibility: visible; text-align: center; font-size: 18px; margin: 50px 0px 30px;">
+    <div></div>
+    <p style="margin:0;font-weight: bold;font-size:36px;color:#f00;word-break:break-all;" id="fo1">
+        {$config.wechat_num}
+    </p>
+</div>
+<a href="weixin://" style="width: 90%;background: #1AAD19;text-align: center;color: #fff;margin: 0 auto;box-sizing: border-box;font-size: 18px;line-height: 2.55555556;border-radius: 5px;display: block;text-decoration: none;" class="copy-btns" data-clipboard-target="#fo1">点击到微信继续阅读</a><p></p>
+<div align="center">
+
+    <h3>示意图：</h3>
+    <img src="__CDN__/assets/addons/landingpage/img/wx.gif" width="80%" height="250px" data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn"></div>
+
+<script>
+    var auto_jump=0;
+    if(/baiduboxapp/i.test(navigator.userAgent)){
+        if(auto_jump == 1){
+            window.location.href="bdbox://utils?action=sendIntent&minver=7.4&params=%7B%22intent%22%3A%22weixin%3A%2F%2F%23Intent%3Bend%22%7D";
+        }
+    }else{
+        if(auto_jump == 1){
+            window.location.href="weixin://";
+        }
+    }
+    function getQuery (name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r!=null) return decodeURIComponent(r[2]); return null;
+    }
+</script>
+<script type="text/javascript">
+    var clipboard = new ClipboardJS('.copy-btns');
+    clipboard.on('success', function(e) {
+        alert("微信网页版提示:\r\n账号已复制成功,\r\n点击确定前往微信添加");
+        // location.href = "weixin://";
+        if(/baiduboxapp/i.test(navigator.userAgent)){
+            location.href = "bdbox://utils?action=sendIntent&minver=7.4&params=%7B%22intent%22%3A%22weixin%3A%2F%2F%23Intent%3Bend%22%7D";
+        }else{
+            location.href = "weixin://";
+        }
+    });
+    clipboard.on('error', function(e) {
+        alert("微信网页版提示:\r\n账号已复制成功,\r\n点击确定前往微信添加");
+        // location.href = "weixin://";
+        location.href = "weixin://";
+    });
+</script>
+
+</body></html>

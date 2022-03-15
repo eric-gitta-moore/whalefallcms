@@ -1,0 +1,31 @@
+<div class="bm-box mt-10" style="margin-bottom:16px;">
+    <div class="bubble">
+        <span>打赏</span>
+        <hr>
+        <span class="sum_of_tip">{$detail.reward_count}书币</span>
+    </div>
+    <a class="btn-tip-menu" id="btn_reward">打赏</a>
+    <div class="tip-history">
+        <h6 class="title">打赏记录</h6>
+        <div class="no-data" style="display: none;text-align:center;font-size:16px">{$site.tip}</div>
+        <div class="rows"></div><div id="nomore" style="display: none">没有更多了...</div>
+    </div>
+    <a class="moreBtn" data-book_id="{$detail.id}" id="more_reward">查看更多</a>
+</div>
+<div class="ds" id="ds" >
+    <div class="msk" id="btn_mask"></div>
+    <div class="txt">
+        <div class="title">打赏</div>
+        <div class="send">
+            <ul>
+                {volist name=":config('site.reward_gift')" id="gift_money" length="4"}
+                <li _sid="{$gift_money}">
+                    <img src="{:config('site.gift_images')[$i-1]}"/>
+                    <span>{$gift_money}{$site.score_name}</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="dbtn" id="cancel_redraw">取消</div>
+    </div>
+</div>

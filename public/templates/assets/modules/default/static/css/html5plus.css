@@ -1,0 +1,33 @@
+main{animation:0s}
+.home,.home01,.home02,.mybooks,.mybooks01,.back,.back01,.topfr,.searchBtn01,.detailtop a,.userinfo .back,.userinfo .setting,.showimg h1,.wap,.control_bottom .BtnTop a.stop,.ortherbtn div.fl a,.btnList li.app,.topdown,.hdownapp{display:none;}
+.tophead{background:#f66;padding:20px 0 5px;display:none;}
+.index .tophead,.control_bottom .BtnTop a.list,.control_bottom .BtnTop a.refresh,.control_bottom .BtnTop a.home3{display:block;}
+.tabBtn span a.on{background:#fff;color:#f66}
+.tabBtn span a{font-size:.8em}
+.tabBtn{margin:0px auto;padding:0px}
+.logo{position:absolute;top:20px;left:5px;width:32px;height:32px;background:url(../images/favicon.png) no-repeat center center;background-size:32px}
+.tsign{top:20px;}
+.ortherbtn div,.ortherbtn div.fc{width:50%}
+.btnList li{width:25%;}
+#applink{display:inline-block;}
+.detailtop a.home#applink,#waplink{display:none;}
+.ht120{width:100%;height:120px;float:left;display:block;}
+.index .ht120{height:130px;}
+.index .tophead{position:fixed;top:0;padding:30px 0px 5px}
+.index .tophead .tabBtn,.index .tophead .logo,.index .tophead .tsign{margin-top:10px}
+.index .indexso,.index #floatSo.float,.index #floatSo.click{position:fixed;top:75px;z-index:9999;box-shadow:0 5px 5px 0 rgba(114,114,114,.1);animation:none}
+.index .searchInput::placeholder{text-align:center;}
+.index #waplink{display:none;}
+.index #applink{display:inline-block;}
+.index .topaa{width:100%;height:50px;float:left;padding:0px;display:block;margin:0px auto 10px;}
+.index .topaa img{height:50px;width:100%;display:block;}
+.index #searchlist.animation{top:130px;}
+#homebox{width:100%;height:100%;position:fixed;top:0;left:0px;z-index:10000000000000000000;display:block;margin:0 auto;text-align:center;display:none;}
+#homebox .head{position:relative;display:block;display:flex;overflow:hidden;width:100%;height:80%;background:#fff;justify-content:center;align-items:center;z-index:2}
+#homebox .head a,#homebox .head img{display:block;width:auto;height:100%;text-align:center;margin:auto;border:0}
+#homebox .head #time{position:absolute;top:4%;right:4%;z-index:3;display:block;overflow:hidden;margin:auto;width:40px;height:20px;border-radius:9pt;background:rgba(0,0,0,.5);color:#fff;text-align:center;font-size:.8em;line-height:20px}
+#homebox .foot{height:20%;border-top:1px solid #ddd;background:#eee}
+#homebox .foot,#homebox .foot .loadlogo{display:block;overflow:hidden;width:100%}
+#homebox .foot .loadlogo{height:60px;background:url(../images/logo.png) no-repeat center bottom;background-size:150px}
+#homebox .foot .loadtxt{display:block;overflow:hidden;margin-top:5px;width:100%;height:30px;color:#999;font-size:.6em}
+#homebox .foot .loadtxt #time{margin:0px 2px;color:#f66;font-size:2em;}

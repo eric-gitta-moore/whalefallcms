@@ -1,0 +1,575 @@
+{layout name="layout/default" /}
+
+<style type="text/css">
+    .sm-st {
+        background:#fff;
+        padding:20px;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+        margin-bottom:20px;
+        -webkit-box-shadow: 0 1px 0px rgba(0,0,0,0.05);
+        box-shadow: 0 1px 0px rgba(0,0,0,0.05);
+    }
+    .sm-st-icon {
+        width:60px;
+        height:60px;
+        display:inline-block;
+        line-height:60px;
+        text-align:center;
+        font-size:30px;
+        background:#eee;
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        border-radius:5px;
+        float:left;
+        margin-right:10px;
+        color:#fff;
+    }
+    .sm-st-info {
+        font-size:12px;
+        padding-top:2px;
+    }
+    .sm-st-info span {
+        display:block;
+        font-size:24px;
+        font-weight:600;
+    }
+    .orange {
+        background:#fa8564 !important;
+    }
+    .tar {
+        background:#45cf95 !important;
+    }
+    .sm-st .green {
+        background:#86ba41 !important;
+    }
+    .pink {
+        background:#AC75F0 !important;
+    }
+    .yellow-b {
+        background: #fdd752 !important;
+    }
+    .stat-elem {
+
+        background-color: #fff;
+        padding: 18px;
+        border-radius: 40px;
+
+    }
+
+    .stat-info {
+        text-align: center;
+        background-color:#fff;
+        border-radius: 5px;
+        margin-top: -5px;
+        padding: 8px;
+        -webkit-box-shadow: 0 1px 0px rgba(0,0,0,0.05);
+        box-shadow: 0 1px 0px rgba(0,0,0,0.05);
+        font-style: italic;
+    }
+
+    .stat-icon {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .st-red {
+        background-color: #F05050;
+    }
+    .st-green {
+        background-color: #27C24C;
+    }
+    .st-violet {
+        background-color: #7266ba;
+    }
+    .st-blue {
+        background-color: #23b7e5;
+    }
+
+    .stats .stat-icon {
+        color: #28bb9c;
+        display: inline-block;
+        font-size: 26px;
+        text-align: center;
+        vertical-align: middle;
+        width: 50px;
+        float:left;
+    }
+
+    .stat {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        margin-right: 10px; }
+    .stat .value {
+        font-size: 20px;
+        line-height: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500; }
+    .stat .name {
+        overflow: hidden;
+        text-overflow: ellipsis; }
+    .stat.lg .value {
+        font-size: 26px;
+        line-height: 28px; }
+    .stat.lg .name {
+        font-size: 16px; }
+    .stat-col .progress {height:2px;}
+    .stat-col .progress-bar {line-height:2px;height:2px;}
+
+    .item {
+        padding:30px 0;
+    }
+</style>
+<div class="panel panel-default panel-intro">
+    <div class="panel-heading">
+        {:build_heading(null, false)}
+    </div>
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+
+                <div class="row">
+                    <div class="col-sm-3 col-xs-5">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-green"><i class="fa fa-cny"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$user.money}</span>
+                                {:__('Money')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-5">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-violet"><i class="fa fa-book"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$user.score}</span>
+                                {$site.score_name}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-5">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-red"><i class="fa fa-users"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$user.level}</span>
+                                {:__('Level')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-5">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-blue"><i class="fa fa-shopping-bag"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$user.successions}</span>
+                                {:__('Successions')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:15px;">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel panel-default panel-intro">
+                            <div class="panel-heading">
+                                <div class="panel-lead">
+                                    <em>用户统计概览</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="col-xs-6 col-md-3" style="min-width: 320px;">
+                                <div class="panel panel-primary bg-gary">
+                                    <div class="panel-body y-panel-body">
+                                        <div class="y-panel-body-box">
+                                            <div class="amount text-danger y-text-danger" style="background: #37a5fc;">
+                                                <div class="panel-heading y-panel-heading">
+
+                                                    <div class="y-panel-left">
+                                                        <li><strong>今日新增</strong></li>
+                                                        <li class="y-panel-mian"><span>{$all_join_today}</span> 人</li>
+                                                    </div>
+
+                                                </div>
+                                                <div class="y-panel-bottom">
+                                                    <div class=" y-panel-mian-order">
+                                                        <li>代理 / 普通 </li>
+                                                        <li style="color: #f1f1f1;">
+                                                            <span>{$agent_join_today}</span>人 / <span>{$user_join_today}</span>人
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-3" style="min-width: 320px;">
+                                <div class="panel panel-primary bg-gary">
+                                    <div class="panel-body y-panel-body">
+                                        <div class="y-panel-body-box">
+                                            <div class="amount text-danger y-text-danger" style="background: #37a5fc;">
+                                                <div class="panel-heading y-panel-heading">
+
+                                                    <div class="y-panel-left">
+                                                        <li><strong>昨日新增</strong></li>
+                                                        <li class="y-panel-mian"><span>{$all_join_yesterday}</span> 人</li>
+                                                    </div>
+
+                                                </div>
+                                                <div class="y-panel-bottom">
+                                                    <div class=" y-panel-mian-order">
+                                                        <li>代理 / 普通 </li>
+                                                        <li style="color: #f1f1f1;">
+                                                            <span>{$agent_join_yesterday}</span>人 / <span>{$user_join_yesterday}</span>人
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-3" style="min-width: 320px;">
+                                <div class="panel panel-primary bg-gary">
+                                    <div class="panel-body y-panel-body">
+                                        <div class="y-panel-body-box">
+                                            <div class="amount text-danger y-text-danger" style="background: #37a5fc;">
+                                                <div class="panel-heading y-panel-heading">
+
+                                                    <div class="y-panel-left">
+                                                        <li><strong>本月新增</strong></li>
+                                                        <li class="y-panel-mian"><span>{$all_join_this_month}</span> 人</li>
+                                                    </div>
+
+                                                </div>
+                                                <div class="y-panel-bottom">
+                                                    <div class=" y-panel-mian-order">
+                                                        <li>代理 / 普通 </li>
+                                                        <li style="color: #f1f1f1;">
+                                                            <span>{$agent_join_this_month}</span>人 / <span>{$user_join_this_month}</span>人
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-3" style="min-width: 320px;">
+                                <div class="panel panel-primary bg-gary">
+                                    <div class="panel-body y-panel-body">
+                                        <div class="y-panel-body-box">
+                                            <div class="amount text-danger y-text-danger" style="background: #37a5fc;">
+                                                <div class="panel-heading y-panel-heading">
+
+                                                    <div class="y-panel-left">
+                                                        <li><strong>累计新增</strong></li>
+                                                        <li class="y-panel-mian"><span>{$all_join_all}</span> 人</li>
+                                                    </div>
+
+                                                </div>
+                                                <div class="y-panel-bottom">
+                                                    <div class=" y-panel-mian-order">
+                                                        <li>代理 / 普通 </li>
+                                                        <li style="color: #f1f1f1;">
+                                                            <span>{$agent_join_all}</span>人 / <span>{$user_join_all}</span>人
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:15px;">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel panel-default panel-intro">
+                            <div class="panel-heading">
+                                <div class="panel-lead">
+                                    <em>充值统计概览</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-6 col-md-3">
+                                <div class="panel panel-primary bg-gary" style="min-width: 320px;">
+                                    <div class="panel-body y-panel-body">
+                                        <div class="y-panel-body-box">
+                                            <div class="amount text-danger y-text-danger" style="background: #37a5fc;">
+                                                <div class="panel-heading y-panel-heading">
+                                                    <div class="y-panel-left">
+                                                        <li><strong>今日充值</strong><span class="pull-right" style="color:#ffffff;"></li>
+                                                        <li class="y-panel-mian">¥<span>{$all_today}</span></li>
+                                                    </div>
+                                                </div>
+                                                <div class="y-panel-bottom">
+                                                    <div class="y-panel-bottom-mian">
+                                                        <li>支付宝充值</li>
+                                                        <li class="y-bottom-mian">¥<span>{$zfb_today}</span></li>
+                                                    </div>
+                                                    <div class="y-panel-middle"></div>
+                                                    <div class="y-panel-bottom-mian" style="margin-right: 0;">
+                                                        <li>微信充值</li>
+                                                        <li class="y-bottom-mian">¥<span>{$wx_today}</span></li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="y-mianbox">
+                                            <div class="y-mianbox-top">
+                                                <li>书</li>
+                                            </div>
+                                            <div class="y-mianbox-title">
+                                                <li>书币充值</li>
+                                                <li style="color: #fe9d46;">¥<span>{$recharge_all_today}</span></li>
+                                            </div>
+                                            <div class="y-mianbox-shuju">
+                                                <li>已付 / 未付 / 完成率</li>
+                                                <li style="color: #fe9d46;">
+                                                    <span>{$recharge_all_count_today}</span>笔 / <span>{$recharge_all_not_paid_count_today}</span>笔 / <span>{$today_score_percent}% </span>
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="y-mianbox">
+                                            <div class="y-mianbox-top">
+                                                <li>V</li>
+                                            </div>
+                                            <div class="y-mianbox-title">
+                                                <li>会员充值</li>
+                                                <li style="color: #fe9d46;">¥<span>0.00</span></li>
+                                            </div>
+                                            <div class="y-mianbox-shuju">
+                                                <li>已付 / 未付 / 完成率</li>
+                                                <li style="color: #fe9d46;">
+                                                    <span>{$group_all_count_today}</span>笔 / <span>{$group_all_not_paid_count_today}</span >笔 / <span>{$today_group_percent}% </span></li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-md-3">
+                                <div class="panel panel-primary bg-gary" style="min-width: 320px;">
+                                    <div class="panel-body y-panel-body">
+                                        <div class="y-panel-body-box">
+                                            <div class="amount text-danger y-text-danger" style="background: #37a5fc;">
+                                                <div class="panel-heading y-panel-heading">
+                                                    <div class="y-panel-left">
+                                                        <li><strong>昨日充值</strong><span class="pull-right" style="color:#ffffff;"></li>
+                                                        <li class="y-panel-mian">¥<span>{$all_yesterday}</span></li>
+                                                    </div>
+                                                </div>
+                                                <div class="y-panel-bottom">
+                                                    <div class="y-panel-bottom-mian">
+                                                        <li>支付宝充值</li>
+                                                        <li class="y-bottom-mian">¥<span>{$zfb_yesterday}</span></li>
+                                                    </div>
+                                                    <div class="y-panel-middle"></div>
+                                                    <div class="y-panel-bottom-mian" style="margin-right: 0;">
+                                                        <li>微信充值</li>
+                                                        <li class="y-bottom-mian">¥<span>{$wx_yesterday}</span></li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="y-mianbox">
+                                            <div class="y-mianbox-top">
+                                                <li>书</li>
+                                            </div>
+                                            <div class="y-mianbox-title">
+                                                <li>书币充值</li>
+                                                <li style="color: #fe9d46;">¥<span>{$recharge_all_count_yesterday}</span></li>
+                                            </div>
+                                            <div class="y-mianbox-shuju">
+                                                <li>已付 / 未付 / 完成率</li>
+                                                <li style="color: #fe9d46;">
+                                                    <span>{$recharge_all_count_yesterday}</span>笔 / <span>{$recharge_all_not_paid_count_yesterday}</span>笔 / <span>{$yesterday_score_percent}% </span>
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="y-mianbox">
+                                            <div class="y-mianbox-top">
+                                                <li>V</li>
+                                            </div>
+                                            <div class="y-mianbox-title">
+                                                <li>会员充值</li>
+                                                <li style="color: #fe9d46;">¥<span>{$group_all_yesterday}</span></li>
+                                            </div>
+                                            <div class="y-mianbox-shuju">
+                                                <li>已付 / 未付 / 完成率</li>
+                                                <li style="color: #fe9d46;">
+                                                    <span>{$group_all_count_yesterday}</span>笔 / <span>{$group_all_not_paid_count_yesterday}</span >笔 / <span>{$yesterday_group_percent}% </span></li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-md-3">
+                                <div class="panel panel-primary bg-gary" style="min-width: 320px;">
+                                    <div class="panel-body y-panel-body">
+                                        <div class="y-panel-body-box">
+                                            <div class="amount text-danger y-text-danger" style="background: #37a5fc;">
+                                                <div class="panel-heading y-panel-heading">
+                                                    <div class="y-panel-left">
+                                                        <li><strong>本月充值</strong><span class="pull-right" style="color:#ffffff;"></li>
+                                                        <li class="y-panel-mian">¥<span>{$all_month}</span></li>
+                                                    </div>
+                                                </div>
+                                                <div class="y-panel-bottom">
+                                                    <div class="y-panel-bottom-mian">
+                                                        <li>支付宝充值</li>
+                                                        <li class="y-bottom-mian">¥<span>{$zfb_month}</span></li>
+                                                    </div>
+                                                    <div class="y-panel-middle"></div>
+                                                    <div class="y-panel-bottom-mian" style="margin-right: 0;">
+                                                        <li>微信充值</li>
+                                                        <li class="y-bottom-mian">¥<span>{$wx_month}</span></li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="y-mianbox">
+                                            <div class="y-mianbox-top">
+                                                <li>书</li>
+                                            </div>
+                                            <div class="y-mianbox-title">
+                                                <li>书币充值</li>
+                                                <li style="color: #fe9d46;">¥<span>{$recharge_all_month}</span></li>
+                                            </div>
+                                            <div class="y-mianbox-shuju">
+                                                <li>已付 / 未付 / 完成率</li>
+                                                <li style="color: #fe9d46;">
+                                                    <span>{$recharge_all_count_month}</span>笔 / <span>{$recharge_all_not_paid_count_month}</span>笔 / <span>{$month_score_percent}% </span>
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="y-mianbox">
+                                            <div class="y-mianbox-top">
+                                                <li>V</li>
+                                            </div>
+                                            <div class="y-mianbox-title">
+                                                <li>会员充值</li>
+                                                <li style="color: #fe9d46;">¥<span>{$group_all_month}</span></li>
+                                            </div>
+                                            <div class="y-mianbox-shuju">
+                                                <li>已付 / 未付 / 完成率</li>
+                                                <li style="color: #fe9d46;">
+                                                    <span>{$group_all_count_month}</span>笔 / <span>{$group_all_not_paid_count_month}</span >笔 / <span>{$month_group_percent} </span></li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-md-3">
+                                <div class="panel panel-primary bg-gary" style="min-width: 320px;">
+                                    <div class="panel-body y-panel-body">
+                                        <div class="y-panel-body-box">
+                                            <div class="amount text-danger y-text-danger" style="background: #37a5fc;">
+                                                <div class="panel-heading y-panel-heading">
+                                                    <div class="y-panel-left">
+                                                        <li><strong>累计充值</strong><span class="pull-right" style="color:#ffffff;"></li>
+                                                        <li class="y-panel-mian">¥<span>{$all_all}</span></li>
+                                                    </div>
+                                                </div>
+                                                <div class="y-panel-bottom">
+                                                    <div class="y-panel-bottom-mian">
+                                                        <li>支付宝充值</li>
+                                                        <li class="y-bottom-mian">¥<span>{$zfb_all}</span></li>
+                                                    </div>
+                                                    <div class="y-panel-middle"></div>
+                                                    <div class="y-panel-bottom-mian" style="margin-right: 0;">
+                                                        <li>微信充值</li>
+                                                        <li class="y-bottom-mian">¥<span>{$wx_all}</span></li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="y-mianbox">
+                                            <div class="y-mianbox-top">
+                                                <li>书</li>
+                                            </div>
+                                            <div class="y-mianbox-title">
+                                                <li>书币充值</li>
+                                                <li style="color: #fe9d46;">¥<span>{$recharge_all_all}</span></li>
+                                            </div>
+                                            <div class="y-mianbox-shuju">
+                                                <li>已付 / 未付 / 完成率</li>
+                                                <li style="color: #fe9d46;">
+                                                    <span>{$recharge_all_count_all}</span>笔 / <span>{$recharge_all_not_paid_count_all}</span>笔 / <span>{$all_score_percent}% </span>
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="y-mianbox">
+                                            <div class="y-mianbox-top">
+                                                <li>V</li>
+                                            </div>
+                                            <div class="y-mianbox-title">
+                                                <li>会员充值</li>
+                                                <li style="color: #fe9d46;">¥<span>{$group_all_all}</span></li>
+                                            </div>
+                                            <div class="y-mianbox-shuju">
+                                                <li>已付 / 未付 / 完成率</li>
+                                                <li style="color: #fe9d46;">
+                                                    <span>{$group_all_count_all}</span>笔 / <span>{$group_all_not_paid_count_all}</span >笔 / <span>{$all_group_percent}% </span></li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {:hook('user_dashboard_after')}
+
+            </div>
+        </div>
+    </div>
+</div>
+<script id="newstpl" type="text/html">
+    <ul class="nav nav-stacked">
+        <%for(var i=0;i < news.length;i++){%>
+        <%var item=news[i];%>
+        <li>
+            <a href="<%=item.url%>" target="_blank">
+                <span class="text"><%=item.title%></span>
+            </a>
+        </li>
+        <%}%>
+    </ul>
+</script>
+<script id="discussiontpl" type="text/html">
+    <ul class="products-list product-list-in-box">
+        <%for(var i=0;i < news.length;i++){%>
+        <%var item=news[i];%>
+        <li class="item">
+            <div class="">
+                <a href="<%=item.url%>" target="_blank" class="product-title"><%=item.title%>
+                    <span class="label label-warning pull-right"><%=item.comments_count%></span></a>
+                <span class="product-description">
+                    <%=item.last_time%>
+                </span>
+            </div>
+        </li>
+        <%}%>
+    </ul>
+</script>
+<script>
+    var Orderdata = {
+        column: {:json_encode(array_keys($paylist))},
+        paydata: {:json_encode(array_values($paylist))},
+        createdata: {:json_encode(array_values($createlist))},
+    };
+</script>

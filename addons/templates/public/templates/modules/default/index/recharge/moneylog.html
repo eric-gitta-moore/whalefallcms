@@ -1,0 +1,30 @@
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {include file="common/sidenav" /}
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default panel-recharge">
+                <div class="panel-body">
+                    <h2 class="page-header">{:__('Balance log')}
+                        <span><small class="text-danger">{:__('Balance')}:{$user.money}</small></span>
+                        <a href="{:url('recharge/recharge')}" class="btn btn-info btn-recharge pull-right"><i class="fa fa-cny"></i> {:__('Recharge')}</a>
+                    </h2>
+                    {volist name='moneyloglist' id='log'}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>
+                                {$log.memo}
+                            </h4>
+                            <p class="text-{$log.money>=0?'success':'danger'}">{:__('Balance')}：{$log.money>=0?'+':''}{$log.money}</p>
+                            <p class="text-muted">{:__('Operate date')}：{$log.createtime|datetime}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    {/volist}
+                    <div class="pager">{$moneyloglist->render()}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

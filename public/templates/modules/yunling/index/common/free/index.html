@@ -1,0 +1,76 @@
+{extend name="common/base2"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/bootstrap-paginate.css" />
+<style>
+    @media screen and (min-width: 320px) {
+        html {
+            font-size: 63.3% !important
+        }
+    }
+
+    @media screen and (min-width: 375px) {
+        html {
+            font-size: 62.5% !important
+        }
+    }
+
+    @media screen and (min-width: 414px) {
+        html {
+            font-size: 68.9% !important
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        html {
+            font-size: 68.9% !important
+        }
+    }
+</style>
+{/block}
+
+{block name="subnav"}
+<a class="toback tobackbg-free" href="javascript:history.go(-1)"></a>
+{/block}
+
+{block name="content"}
+<div class="br-box free-box rank-view clearfix">
+    <div class="tl"><i class="wbg"></i></div>
+    <div class="list clearfix" id="html_box" style="min-height: 740px;">
+        {volist name="paginate" id="vo"}
+            <div class="item clearfix">
+                <a href="{:url('index/' . $module . '.book/detail' , ['id' => $vo['id'] ] )}" class="clearfix">
+                    <div class="cover">
+                        <img width="75" height="100" src="{:img($vo['cover_image'])}" style="background: rgb(238, 238, 238); display: block;">
+                    </div>
+                    <div class="body">
+                        <div class="title">{$vo.name}</div>
+                        <div class="col">
+                            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="7" r="6" fill="#ccc"></circle><path d="M12 11a10 10 0 0 1 10 10 2 2 0 0 1-2 2H4a2 2 0 0 1-2-2 10 10 0 0 1 10-10z" fill="#ccc"></path></svg>
+                            {$vo.author.name}
+                        </div>
+                        <div class="col">
+                            {php}
+                            //分类标签
+                            $cate = '';
+                            if (!empty($vo['cate']))
+                            {
+                                foreach ($vo['cate'] as $item) {
+                                    $cate .= '<label class="tag">' . $item['name'] . '</label>';
+                                }
+                            }
+                            {/php}
+                            {$cate}
+                        </div>
+                        <div class="col">{$vo.last_chapter}</div>
+                    </div>
+                </a>
+            </div>
+        {/volist}
+    </div>
+    <div style="text-align: center">
+        {$paginate -> render()}
+    </div>
+</div>
+{/block}

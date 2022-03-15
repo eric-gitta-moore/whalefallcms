@@ -1,0 +1,119 @@
+{extend name="common/base1"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/swiper.min.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/bootstrap-paginate.css" />
+<style>
+    .books-classify {
+        overflow:hidden;
+        padding: 0 .32rem;
+    }
+    .books-classify>div {
+        overflow:hidden;
+        border-bottom: 1px solid #eee;
+    }
+    .bcigy-item {
+        float: left;
+        width:33.3%;
+        height:16px;
+        line-height: 16px;
+        text-align: center;
+        color:#666;
+        font-size: 14px;
+        border-right: 1px solid #eee;
+        box-sizing: border-box;
+        margin: 10px 0;
+    }
+    .bcigy-item:nth-child(3n) {
+        border-right: none;
+    }
+    .bcigy-sel {
+        color: #ff5420;
+    }
+</style>
+{/block}
+
+{block name="search_nav"}
+<div class="rt-bar">
+    <div class="row">
+        <div class="col icon">
+            <a href="javascript:history.go(-1)">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 40 40"><path d="M29.56 39.47a2 2 0 0 1-1.38-.56L8.45 20 28.17 1.09A2 2 0 1 1 30.94 4L14.23 20l16.71 16a2 2 0 0 1-1.38 3.44z" fill="#ff730a"></path></svg>
+            </a>
+        </div>
+        <div class="col title" style="margin-right: 1.333rem;">
+            人气榜
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="subnav"}
+<div class="books-classify">
+    <div>
+        <div class="bcigy-item {if $order=='readnum'}bcigy-sel{/if}" onclick="location.href='{:url('index/' . $module . '.rank/index',['order' => 'readnum' ])}'">
+            人气榜
+        </div>
+        <div class="bcigy-item {if $order=='createtime'}bcigy-sel{/if}" onclick="location.href='{:url('index/' . $module . '.rank/index',['order' => 'createtime' ])}'">
+            最新上架
+        </div>
+        <div class="bcigy-item {if $order=='end'}bcigy-sel{/if}" onclick="location.href='{:url('index/' . $module . '.rank/index',['order' => 'end' ])}'">
+            完结榜
+        </div>
+    </div>
+    <div>
+        <div class="bcigy-item {if $order=='free'}bcigy-sel{/if}" onclick="location.href='{:url('index/' . $module . '.rank/index',['order' => 'free' ])}'">
+            免费榜
+        </div>
+        <div class="bcigy-item {if $order=='boy'}bcigy-sel{/if}" onclick="location.href='{:url('index/' . $module . '.rank/index',['order' => 'boy' ])}'">
+            男生榜
+        </div>
+        <div class="bcigy-item {if $order=='girl'}bcigy-sel{/if}" onclick="location.href='{:url('index/' . $module . '.rank/index',['order' => 'girl' ])}'">
+            女生榜
+        </div>
+    </div>
+</div>
+{/block}
+
+
+{block name="content"}
+<div class="books-res" id="html_box">
+    {volist name="paginate" id="datum"}
+        <div class="item">
+            <a href="{:url('index/' . $module . '.book/detail', ['id' => $datum['id'] ] )}" class="link">
+                <div class="cover">
+                    <img width="63" height="84" class="" src="{:img($datum['cover_image'])}" style="background: rgb(238, 238, 238); display: block;">
+                </div>
+                <div class="body">
+                    <div class="title">
+                        {$datum.name}
+                    </div>
+                    <div class="author">
+                        作者：{$datum.author.name}
+                    </div>
+                    <div class="text">
+                        {$datum.summary}
+                    </div>
+                    <div class="bottom">
+                        <span class="col"><i class="icon-gray-hot"></i> {$datum.readnum}</span>
+                        <span class="col"><i class="icon-hand"></i> {$datum.likenum}</span>
+                    </div>
+                </div>
+            </a>
+            <div class="action">
+                <a href="{:url('index/' . $module . '.book/detail', ['id' => $datum['id'] ] )}" class="btn">阅读</a>
+            </div>
+        </div>
+    {/volist}
+    <div style="text-align: center">
+        {$paginate -> render()}
+    </div>
+</div>
+{/block}
+
+{block name="footer"}
+<div class="backtop" id="icon-top" style="display:none">
+    <a href="javascript:void(0);" class="top">顶部</a>
+</div>
+{/block}

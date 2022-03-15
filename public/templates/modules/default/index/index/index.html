@@ -1,0 +1,329 @@
+{extend name="common/common/base"}
+
+{block name="header"}
+<link href="__STATIC_PATH__/css/base.css?v={$site.version}" rel="stylesheet" type="text/css">
+{/block}
+
+{block name="content"}
+
+<main id="right">
+
+    <header>
+        {//页头选项}
+        {include file="common/common/head_switch"}
+
+        {//顶部搜索}
+        {include file="common/common/head_search"}
+    </header>
+
+
+    {//轮播图}
+    {include file="common/common/banner"}
+
+    {//子导航}
+    {include file="common/common/sub_nav"}
+
+
+    {//上部横幅}
+    <section class="showaddiv">
+        <a href="{:config('templates.sub_nav_bottom_ad_link')}"><img src="{:config('templates.sub_nav_bottom_ad')}"/> </a>
+    </section>
+    <div class="clearfix"></div>
+
+{//最新}
+<section class="block">
+    <div class="titleBar clf">
+        <i class="fl"><span>最新</span>发布
+<!--            <font>今日更新<b class="red">29</b>话，一周新作<b class="red">8</b>本</font>-->
+        </i>
+        <a href="/cate/?order=last" class="more">More</a>
+    </div>
+    <div class="book_list clf">
+        {foreach $news as $book}
+        <div class="swiper-slide">
+            <a href="{:url('index/' . $module . '.book/detail',['id' => $book['id'] ] ) }">
+                <img src="{$book.cover_image}">
+                {:$book['18plus']?'<b>18+</b>':''}
+            <p>
+                <label>{$book.last_chapter}</label>
+                <em>{$book.status_text}</em>
+            </p>
+            </a>
+            <span class="booktitle">{$book.name}</span>
+            <p class="commandDes">
+                {php}
+                $cate_text = '';
+                $i=1;
+                foreach($book['cate'] as $cate)
+                {
+                    if($i > 2)break;
+                    $cate_text .= $cate['name'] . ' / ';
+                    $i++;
+                }
+                echo rtrim($cate_text,' / ');
+                {/php}
+            </p>
+        </div>
+        {/foreach}
+    </div>
+
+    <a href="/cate/?order=last" class="morebtn">查看更多</a>
+</section>
+<div class="clearfix"></div>
+
+{if $free_books}
+<section class="block">
+    <div class="titleBar clf">
+        <i class="fl">
+            <span>免费</span>阅读
+<!--            <font>每周一本全免回馈漫友支持</font>-->
+        </i>
+        <a href="{:url('index/signin/index')}" class="sign">打卡送阅币</a>
+    </div>
+    <div class="tuijie_list clf">
+
+        {foreach $free_books as $book}
+        <div class="swiper-slide">
+            <a href="{:url('index/' . $module . '.book/detail',['id' => $book['id'] ] ) }">
+                <img src="{$book.cover_image}" style="height:100%;">
+                <sup class="do">免费</sup>
+            <p>
+                <span>{$book.name}</span>
+                <label>{$book.status_text}</label>
+            </p>
+            </a>
+        </div>
+        {/foreach}
+
+    </div>
+</section>
+<div class="clearfix"></div>
+{/if}
+
+{//枚举分类}
+{volist name="goods" id="cate"}
+<section class="block">
+    <div class="titleBar clf">
+        <i class="fl">
+            <span>{$cate.name}</span>版块
+<!--            <font>宅家福利，新番推荐</font>-->
+        </i>
+        <a href="/cate/?type=73" class="more">More</a>
+    </div>
+    <ul class="book_list clf">
+        {volist name="$cate[$module]" id="vo" length="6"}
+        <div class="swiper-slide">
+            <a href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}">
+                <img src="{:img($vo['cover_image'])}">
+                {:$vo['18plus']?'<b>18+</b>':''}
+            <p><label>{$vo.author_name}</label><i>{$vo.status_text}</i></p>
+            </a>
+            <span class="booktitle">{$vo.name}</span>
+            <p class="commandDes">{$vo.last_chapter}</p>
+        </div>
+        {/volist}
+    </ul>
+    <a href="/cate/?type=73" class="morebtn">查看更多</a>
+</section>
+<div class="clearfix"></div>
+{/volist}
+
+{//强档推荐}
+{php}
+$force_books = getForceCommendBooks(config('templates.force_recommend_' . $module . '_ids'),$module);
+trace($force_books);
+$i = 1;
+{/php}
+{if $force_books}
+<section class="block">
+    <div class="titleBar clf">
+        <i class="fl"><span>强档</span>推荐<font>精选不可错失的内容</font></i><a href="/cate/?order=digg"
+                                                                    class="more">More</a>
+    </div>
+    <div class="ranking_list clf">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+
+                {foreach $force_books as $vo}
+                <div class="swiper-slide">
+                    <a href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}" class="fl">
+                        <img src="{:img($vo['cover_image'])}">
+                        {:$vo['18plus']?'<b>18+</b>':''}
+                    <p>{$vo.last_chapter}</p>
+                        <span>{$vo.status_text}</span>
+                    </a>
+                    <div class="fr">
+                        <b class="booktitle">
+                            <a href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}">{$vo.name}</a>
+                        </b>
+                        <div class="bookdesc">
+                            <a href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}">{$vo.summary}</a>
+                        </div>
+                        <div class="bookcat clf">
+                            <span class="fl wirteIcon">{$vo.author_name}</span>
+                            <span class="fr">{$i}</span>
+                        </div>
+                    </div>
+                </div>
+                {php}$i++;{/php}
+                {/foreach}
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="clearfix"></div>
+{/if}
+
+{//热门推荐}
+{if $charge}
+<section class="block">
+    <div class="titleBar clf">
+        <i class="fl"><span>漫友</span>最爱<font>10万网友们推荐的漫画</font></i><a href="/cate/?order=fav"
+                                                                      class="more">More</a>
+    </div>
+    <div>
+        <ul class="book_list clf">
+            {foreach $charge as $vo}
+            <div class="swiper-slide">
+                <a href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}">
+                    <img src="{:img($vo['cover_image'])}">
+                    {:$vo['18plus']?'<b>18+</b>':''}
+                <p>
+                    <label>{$vo.last_chapter}</label>
+                    <i>{$vo.status_text}</i>
+                </p>
+                </a>
+                <span class="booktitle">{$vo.name}</span>
+                <p class="commandDes">
+                    {php}
+                    $cate_text = '';
+                    $i=1;
+                    foreach($vo['cate'] as $cate)
+                    {
+                        if($i > 2)break;
+                            $cate_text .= $cate['name'] . ' / ';
+                            $i++;
+                        }
+                        echo rtrim($cate_text,' / ');
+                    {/php}
+                </p>
+            </div>
+            {/foreach}
+
+        </ul>
+    </div>
+    <a href="/cate/?order=fav" class="morebtn">查看更多</a>
+</section>
+<div class="clearfix"></div>
+{/if}
+
+{php}/*
+<section class="block">
+    <div class="swiper_tab_wrap" id="swiperTabWrap">
+        <div class="swiper_tab">
+            <div class="titleBar clf">
+                <i class="fl"><span>榜单</span>排行</i>
+                <div class="swiper_ul_wrap">
+                    <ul class="swiper_ul">
+                        <li><a href="javascript:void(0);" class="active">新作</a></li>
+                        <li><a href="javascript:void(0);">畅销</a></li>
+                        <li><a href="javascript:void(0);">热门</a></li>
+                        <li><a href="javascript:void(0);">推荐</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="comic_list clf">
+            <div class="swiper-container" id="swiperTabCon">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="bdbox"><a href="/comic/933"><img src="static/picture/thumb.mmp"><b
+                                class="px">1</b>
+                            <p><label>周一更 | 第4话</label><em>连载</em></p></a><span class="booktitle">心机女教授</span>
+                            <p class="commandDes">剧情</p></div>
+                        <div class="bdbox"><a href="/comic/932"><img src="static/picture/thumb.mmp"><b
+                                class="px">2</b>
+                            <p><label>周四更 | 第4话</label><em>连载</em></p></a><span class="booktitle">不该有的爱情</span>
+                            <p class="commandDes">剧情</p></div>
+                        <div class="bdbox"><a href="/comic/931"><img src="static/picture/thumb.mmp"><b
+                                class="px">3</b>
+                            <p><label>周五更 | 第3话</label><em>连载</em></p></a><span class="booktitle">失格妈妈</span>
+                            <p class="commandDes">剧情</p></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bdbox"><a href="/comic/402"><img src="static/picture/thumb.mmp"><b
+                                class="px">1</b>
+                            <p><label>周四更 | 第55话</label><em>连载</em></p></a><span
+                                class="booktitle">Run away</span>
+                            <p class="commandDes">剧情 / 恋爱</p></div>
+                        <div class="bdbox"><a href="/comic/404"><img src="static/picture/thumb.mmp"><b
+                                class="px">2</b>
+                            <p><label>全集 | 第15话</label><i>完结</i></p></a><span class="booktitle">捕猎母猪(完结)</span>
+                            <p class="commandDes">剧情 / 恋爱</p></div>
+                        <div class="bdbox"><a href="/comic/625"><img src="static/picture/thumb.mmp"><b
+                                class="px">3</b>
+                            <p><label>全集 | 第10话</label><i>完结</i></p></a><span
+                                class="booktitle">家有色鬼（真人漫画）</span>
+                            <p class="commandDes">剧情 / 恋爱 / 真人</p></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bdbox"><a href="/comic/120"><img src="static/picture/thumb.mmp"><b
+                                class="px">1</b>
+                            <p><label>全集 | 第28话</label><i>完结</i></p></a><span class="booktitle">孤岛拼图</span>
+                            <p class="commandDes">剧情</p></div>
+                        <div class="bdbox"><a href="/comic/710"><img src="static/picture/thumb.mmp"><b
+                                class="px">2</b>
+                            <p><label>周三更 | 第25话</label><em>连载</em></p></a><span class="booktitle">菜鸟扫美记</span>
+                            <p class="commandDes">剧情</p></div>
+                        <div class="bdbox"><a href="/comic/624"><img src="static/picture/thumb.mmp"><b
+                                class="px">3</b>
+                            <p><label>周五更 | 第40话</label><i>完结</i></p></a><span class="booktitle">雨声的诱惑</span>
+                            <p class="commandDes">恋爱 / 剧情</p></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bdbox"><a href="/comic/42"><img src="static/picture/thumb.mmp"><b
+                                class="px">1</b>
+                            <p><label>全集 | 第41话</label><i>完结</i></p></a><span class="booktitle">诗恩（完结）</span>
+                            <p class="commandDes">剧情 / 恋爱</p></div>
+                        <div class="bdbox"><a href="/comic/857"><img src="static/picture/thumb.mmp"><b
+                                class="px">2</b>
+                            <p><label>周三更 | 第16话</label><em>连载</em></p></a><span class="booktitle">与前妻同居</span>
+                            <p class="commandDes">剧情 / 恋爱</p></div>
+                        <div class="bdbox"><a href="/comic/208"><img src="static/picture/thumb.mmp"><b
+                                class="px">3</b>
+                            <p><label>全集 | 第100话</label><i>完结</i></p></a><span class="booktitle">妻子的情人</span>
+                            <p class="commandDes">剧情</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/new/" class="morebtn">查看更多</a>
+</section>
+<div class="clearfix"></div>
+*/{/php}
+
+{php}
+$portal_bottom_ad = config('templates.portal_bottom_ad');
+{/php}
+{if $portal_bottom_ad}
+<section class="showaddiv">
+    <a href="{:config('templates.portal_bottom_ad_link')}"> <img src="{$portal_bottom_ad}"/> </a>
+</section>
+<div class="clearfix"></div>
+{/if}
+
+<section class="block">
+    <div class="titleBar wb10 clf">
+        <i class="fl"><span>猜你</span>喜欢<font>大家都在看的热门好漫</font></i>
+        <a href="/cate/?order=hot" class="more">More</a>
+    </div>
+    <div class="book_list clf">
+        <div id="dataList" class="data-list"></div>
+    </div>
+</section>
+
+
+</main>
+{/block}

@@ -1,0 +1,82 @@
+{extend name="common/common/base"}
+
+{block name="header"}
+<link href="__STATIC_PATH__/css/base.css?v={$site.version}" rel="stylesheet" type="text/css">
+
+{//辅助js}
+<script type="text/javascript">
+    if (window.frames.length != parent.frames.length) { document.writeln(" <style>.catebox dd{white-space: normal;padding-right:0px;}</style>");}
+    var cate = 'all';
+    var status = 'all';
+    var reader = 'all';
+    var orderby = 'log_time';
+</script>
+{/block}
+
+{block name="content"}
+<main id="left">
+
+    <header>
+        {//页头选项}
+        {include file="common/common/head_switch"}
+
+        {//顶部搜索}
+        {include file="common/common/head_search"}
+    </header>
+
+    <section class="block">
+        <div class="titleBar catetitle clf">
+            <i class="fl">漫画分类</i>
+            <em>今日已更新：<b class="red">{$today_new_books_count}</b>话，一周新作：<b class="red">{$week_new_books_count}</b>本</em>
+        </div>
+        <div class="catebox">
+            <span>分类：</span>
+            <dd class="stc">
+                <a href="javascript:void(0);" class="red" data-value="all">全部</a>
+                {foreach $cate_data as $vo}
+                <a href="javascript:void(0);" data-value="{$vo.id}">{$vo.name}</a>
+                {/foreach}
+            </dd>
+        </div>
+        <div class="catebox">
+            <span>读者：</span>
+            <dd class="sdz">
+                <a href="javascript:void(0);" class="red" data-value="all">全部</a>
+                <a href="javascript:void(0);" data-value="adult">成年<em>(582)</em></a>
+            </dd>
+        </div>
+        <div class="catebox">
+            <span>状态：</span>
+            <dd class="szt">
+                <a href="javascript:void(0);" class="red" data-value="all">全部</a>
+                <a href="javascript:void(0);" data-value="0">连载中<em>(220)</em></a>
+                <a href="javascript:void(0);" data-value="1">已完结<em>(483)</em></a>
+            </dd>
+        </div>
+        <div class="catebox">
+            <span>排序：</span>
+            <dd class="spx">
+                <a href="javascript:void(0);" class="red" data-value="log_time">刚刚更新</a>
+                <a href="javascript:void(0);" data-value="createtime">新作</a>
+                <a href="javascript:void(0);" data-value="recommend">推荐</a>
+                <a href="javascript:void(0);" data-value="readnum">热门</a>
+                <a href="javascript:void(0);" data-value="collectnum">追更</a>
+            </dd>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <section class="block">
+        <div class="titleBar wb10 clf">
+            <i class="fl">筛选列表</i>
+        </div>
+        <div class="book_list qhlist clf">
+            <div id="dataList" class="data-list"></div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+
+
+</main>
+<div class="clearfix"></div>
+
+{/block}

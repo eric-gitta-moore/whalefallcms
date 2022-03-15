@@ -1,0 +1,18 @@
+<div class="bm-box mt-10">
+    <div class="head">
+        <div class="title dot">
+            猜你喜欢
+        </div>
+    </div>
+    <div class="books-row">
+        {volist name="$hots" id="vo"}
+        <div class="item">
+            <a href="{:url('index/' . $module . '.book/detail',['id'=>$vo['id']])}">
+                <img class="lazy" data-original="{$vo.cover_image}" style="width:110px;height:146px;"/>
+                <div class="title">{$vo.name}</div>
+                <div class="text">{$vo.last_chapter}</div>
+            </a>
+        </div>
+        {/volist}
+    </div>
+</div>

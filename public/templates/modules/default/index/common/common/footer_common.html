@@ -1,0 +1,7 @@
+<script type="text/javascript">
+    if (navigator.userAgent.indexOf("Html5Plus") > -1) {
+        document.writeln("<style>#waplink{display:none;}#applink{display:inline-block;}</style>");
+        document.writeln("<link href='__STATIC_PATH__/css/html5plus.css' rel='stylesheet' type='text/css'>");
+    }
+</script>
+<script src="__CDN__/assets/js/require{$Think.config.app_debug?'':'.min'}.js" data-main="__CDN__/assets/js/require-frontend{$Think.config.app_debug?'':'.min'}.js?v={$site.version|htmlentities}"></script>

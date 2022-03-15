@@ -1,0 +1,40 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label for="c-name" class="control-label col-xs-12 col-sm-2">{:__('模板标识')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text" value="{:input('name')}" readonly>
+            <span class="text-gray"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-title" class="control-label col-xs-12 col-sm-2">{:__('模板名称')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="{:urldecode(input('title'))}" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="c-select_name" class="control-label col-xs-12 col-sm-2">{:__('选择运用')}{:input('module')==1?"模块":"插件"}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-select_name" data-multiple="true"   data-rule="required"   data-source="templates/templates/select/name/{:input('name')}/module/{:input('module')}" class="form-control selectpage" name="row[select_name]" type="text" value="{:$select_name}">
+            <span class="help-block" ></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-domain" class="control-label col-xs-12 col-sm-2">{:__('二级域名')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-domain" class="form-control " name="row[domain]" type="text" value="{$domain}">
+            <span class="help-block" >输入只想使用当前模板的二级域名。如你手机版m.xxxxx.com，可以输入"m",</span>
+        </div>
+    </div>
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

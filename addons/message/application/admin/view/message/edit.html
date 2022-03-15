@@ -1,0 +1,36 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Message_type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="c-message_type" disabled data-show-user data-rule="required" class="form-control selectpicker" name="row[message_type]">
+                {foreach name="messageTypeList" item="vo"}
+                    <option value="{$key}" {in name="key" value="$row.message_type"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+            <div id="selectpage_user">
+                {if isset($row.user_id)}
+                    <input id="c-user_id" disabled placeholder="请选择会员" data-rule="required" data-source="user/user/index" data-field="nickname" class="form-control selectpage" name="row[user_id]" type="text" value="{$row.user_id}">
+                {/if}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Message_title')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-message_title" class="form-control" name="row[message_title]" type="text" value="{$row.message_title|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Message_content')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-message_content" data-rule="required" class="form-control editor" rows="5" name="row[message_content]" cols="50">{$row.message_content|htmlentities}</textarea>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

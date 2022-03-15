@@ -1,0 +1,81 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+	<div class="form-group">
+		<label class="control-label col-xs-12 col-sm-3">广告位名称：</label>
+		<div class="col-xs-12 col-sm-7">
+			<input id="c-name" data-rule="required" class="form-control form-control" name="row[name]" type="text" value="{$row.name}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-xs-12 col-sm-3"></label>
+		<div class="col-xs-12 col-sm-7">
+			<span class="n-msg" style="color: #ff0000;">*广告位名称，用来区分和识别广告位的位置</span>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-xs-12 col-sm-3">广告位标记：</label>
+		<div class="col-xs-12 col-sm-7">
+			<input id="c-mark" data-rule="required" class="form-control form-control" placeholder="请输入广告位标记" name="row[mark]" type="text" value="{$row.mark}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-xs-12 col-sm-3"></label>
+		<div class="col-xs-12 col-sm-7">
+			<span class="n-msg" style="color: #ff0000;">* <b>谨慎修改，修改后会导致以以前的标记调用广告位的代码失效</b></span>
+			<span class="n-msg" style="color: #ff0000;">* 广告位标记，不可重复，可以使用getAdsByMark方法获取广告位信息，可以自行在项目中规划每个广告位的标记名，多位开发者按照约定的标记名创建和维护广告位，避免ID的不确定性</span>
+			
+		</div>
+	</div>
+	
+
+	<div class="form-group">
+		<label class="control-label col-xs-12 col-sm-3">广告位类型：</label>
+		<div class="col-xs-12 col-sm-7">
+			<div class="radio">
+				<label  for="row[type]-1"><input class="form-input-type"  id="row[type]-1" name="row[type]" type="radio" value="1" {$row.type==1?"checked='checked'":""}> 图片广告</label>
+				<label for="row[type]-2"><input  class="form-input-type"  id="row[type]-2" name="row[type]" type="radio" value="2" {$row.type==2?"checked='checked'":""}>多图& 幻灯广告</label>
+				<label for="row[type]-3"><input  class="form-input-type"  id="row[type]-3" name="row[type]" type="radio" value="3" {$row.type==3?"checked='checked'":""}> 代码广告</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group form-group-width" {$row.type==3?" style='display: none;'":""}>
+		<label class="control-label col-xs-12 col-sm-3">广告位宽度：</label>
+		<div class="col-xs-12 col-sm-7">
+			<input id="c-table"  class="form-control form-control" placeholder="广告位图片的宽度" name="row[width]" type="number" value="{$row.width}">
+		</div>
+	</div>
+
+	<div class="form-group form-group-height" {$row.type==3?" style='display: none;'":""}>
+		<label class="control-label col-xs-12 col-sm-3">广告位高度：</label>
+		<div class="col-xs-12 col-sm-7">
+			<input id="c-table"  class="form-control form-control" placeholder="广告位图片的高度" name="row[height]" type="number" value="{$row.height}">
+		</div>
+	</div>
+
+	<div class="form-group form-group-code" {$row.type!=3?" style='display: none;'":""}>
+		<label class="control-label col-xs-12 col-sm-3">自定义广告代码：</label>
+		<div class="col-xs-12 col-sm-7">
+			<textarea  class="form-control form-control"  name="row[code]" rows="5" >{$row.code}</textarea>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-xs-12 col-sm-3"></label>
+		<div class="col-xs-12 col-sm-7">
+			<span class="n-msg" style="color: #ff0000;">* 广告位创建成功后，请及时给广告位添加广告内容！</span>
+		</div>
+	</div>
+
+	<div class="form-group layer-footer">
+		<label class="control-label col-xs-12 col-sm-3"></label>
+		<div class="col-xs-12 col-sm-7">
+			<button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+			<button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+		</div>
+	</div>
+</form>
+
+
+

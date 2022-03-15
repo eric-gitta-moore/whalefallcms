@@ -1,0 +1,31 @@
+{//选择工具栏}
+<div class="editable-bar" id="editable-bar" style="display:none;">
+    <div class="row">
+        <div class="cp-box">
+            <input type="checkbox" name="select_all" class="select_all">
+            <div class="text"><i></i>全选</div>
+        </div>
+        <div class="action">
+            <a class="btn delete-selected-btn">
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M38.5 18v20a4.5 4.5 0 0 1-4.5 4.5H14A4.5 4.5 0 0 1 9.5 38V18h-3v20a7.51 7.51 0 0 0 7.5 7.5h20a7.51 7.51 0 0 0 7.5-7.5V18zM18.5 6.42a.87.87 0 0 1 .72-.92h9.46a.9.9 0 0 1 .81 1v4H40v-3h-7.5v-.92a3.9 3.9 0 0 0-3.72-4.08h-9.65a3.86 3.86 0 0 0-3.63 4v1H8v3h10.5z" fill="#ff730a"></path><path fill="#ff730a" d="M30.5 24h3v13h-3zM23.5 27h3v10h-3zM15.5 24h3v13h-3z"></path></svg>确定删除(<span id="delete_count">0</span>)
+            </a>
+        </div>
+    </div>
+</div>
+
+{//删除提示框}
+<div class="mask-box delete-selected-confirm" style="display: none;"></div>
+<div class="modal confirm-modal delete-selected-confirm" style="display: none;">
+    <div class="inner">
+        <div class="confirm-box">
+            <div class="body">
+                <div class="title">共选中<span id="confirm-delete-count">0</span>个作品</div>
+                <div class="text">是否删除已选中作品?</div>
+            </div>
+            <div class="action">
+                <a id="delete-cancel" class="btn cancel">取消</a>
+                <a id="delete-confirm-btn" class="btn confirm">确定</a>
+            </div>
+        </div>
+    </div>
+</div>

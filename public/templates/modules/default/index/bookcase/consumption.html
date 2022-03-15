@@ -1,0 +1,38 @@
+{extend name="common/common/base"}
+
+{block name="header"}
+<link href="__STATIC_PATH__/css/base.css?v={$site.version}" rel="stylesheet" type="text/css">
+{/block}
+
+{block name="content"}
+<main id="left">
+
+    <header class="tophead">
+        <a href="javascript:history.go(-1);" class="back"></a>
+        我的书架
+        <a href="/" class="home01" id="waplink"></a>
+        <a href="/" class="home01" id="applink"></a>
+    </header>
+    <div class="clearfix"></div>
+
+    <section class="block">
+        <div class="tabBar tabBar3 clf">
+            <a href="{:url('index/bookcase/index')}" class="fl taboff">书本收藏</a>
+            <a href="javascript:void(0);" class="fl taboff w34 selected">{$site.score_name}消费</a>
+            <a href="{:url('index/bookcase/history')}"  class="fl taboff">浏览记录</a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tabBot">
+            <span>已购买<b>0</b>章</span>
+            <a class="fr" href="/e/member/buybak/">充值记录</a>
+        </div>
+        <div class="clearfix"></div>
+
+        <ul class="buylog_list bt5"><div id="dataList" class="data-list"></div></ul>
+        <div class="clearfix"></div>
+    </section>
+
+</main>
+<div class="clearfix"></div>
+
+{/block}

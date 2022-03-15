@@ -1,0 +1,122 @@
+<style>
+    .panel-recharge h3 {
+        margin-bottom: 15px;
+        margin-top: 10px;
+        color: #444;
+        font-size: 16px;
+    }
+
+    .row-recharge > div {
+        margin-bottom: 10px;
+    }
+
+    .row-recharge > div > label {
+        width: 100%;
+        height: 40px;
+        display: block;
+        font-size: 14px;
+        line-height: 40px;
+        color: #999;
+        background: #fff;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        cursor: pointer;
+        text-align: center;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        font-weight: 400;
+    }
+
+    .row-recharge > div > label.active {
+        border-color: #0d95e8;
+        color: #0d95e8;
+    }
+
+    .row-recharge > div > label:hover {
+        z-index: 4;
+        border-color: #27b0d6;
+        color: #27b0d6;
+    }
+
+    .panel-recharge .custommoney {
+        border: none;
+        height: 100%;
+        width: 100%;
+        display: inherit;
+        line-height: 100%;
+    }
+
+    .row-recharge > div {
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .row-recharge > div input.form-control {
+        border: none;
+        display: inline-block;
+    }
+
+    .row-paytype div input {
+        display: none;
+    }
+
+    .row-paytype img {
+        height: 22px;
+        margin: 8px;
+        vertical-align: inherit;
+    }
+
+    .btn-recharge {
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0;
+    }
+
+</style>
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-recharge">
+                <div class="panel-body">
+                    <h2 class="page-header">
+                        {:__('Withdraw log')}
+                        <a href="{:url('user.withdraw/index')}" class="btn btn-primary btn-withdraw pull-right"><i class="fa fa-cny"></i> {:__('Withdraw')}</a>
+                    </h2>
+                    {volist name='withdrawloglist' id='log'}
+                    <div class="row">
+                        <div class="col-md-9">
+                            <p class="text-primary">{:__('Withdraw type')}：支付宝</p>
+                            <p class="text-primary">{:__('Withdraw money')}：￥{$log.money}</p>
+                            {if $log.status=='rejected'&&$log.memo}
+                            <p class="text-danger">拒绝原因：{$log.memo}</p>
+                            {elseif $log.status=='successed'}
+                                {if $log.taxes>0}
+                                <p class="text-danger">扣除税费：￥{$log.taxes}</p>
+                                {/if}
+                                {if $log.handingfee>0}
+                                <p class="text-danger">扣除手续费：￥{$log.handingfee}</p>
+                                {/if}
+                                <p class="text-success">最终到账：￥{$log.settledmoney}</p>
+                            {/if}
+                            <p>{:__('Operate date')}：{$log.createtime|datetime}</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            {if $log.status=='successed'}
+                            <a href="javascript:" class="btn btn-success">提现成功</a>
+                            {elseif $log.status=='rejected' /}
+                            <a href="javascript:" class="btn btn-danger" data-toggle="tooltip" data-title="{$log.memo}">提现拒绝</a>
+                            {else /}
+                            <a href="javascript:" class="btn btn-info" data-toggle="tooltip" data-title="请等待后台审核">申请中</a>
+                            {/if}
+                        </div>
+                    </div>
+                    <hr>
+                    {/volist}
+                    <div class="pager">{$withdrawloglist->render()}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

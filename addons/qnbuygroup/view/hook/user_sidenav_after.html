@@ -1,0 +1,9 @@
+<ul class="list-group">
+    <li class="list-group-heading">{:__('VIP用户组')}</li>
+    <li class="list-group-item {:$actionname=='buy'?'active':''}"><a
+            href="{:url('index/qnbuygroup.buygroup/buy')}"><i
+            class="fa fa-cny fa-fw"></i> {:__('用户组购买')}</a></li>
+    <li class="list-group-item {:$actionname=='buylog'?'active':''}"><a
+            href="{:url('index/qnbuygroup.buygrouplog/buylog')}"><i
+            class="fa fa-list fa-fw"></i> {:__('用户组购买记录')}</a></li>
+</ul>

@@ -1,0 +1,1 @@
+DELETE FROM `fa_novel_chapter` WHERE `novel_novel_id` = (select `id` from `fa_novel` order by id desc limit 10)

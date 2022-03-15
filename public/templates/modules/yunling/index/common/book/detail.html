@@ -1,0 +1,127 @@
+{extend name="common/base1"}
+
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/style.min.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC_PATH__/css/vendor.css" />
+{/block}
+
+{block name="subnav"}
+{//页头}
+<div class="cover-box">
+    <div class="bg">
+        <img src="{:img($detail['horizon_image'])}"/>
+        <div class="gradient"></div>
+    </div>
+    <div class="container">
+        <div class="title">{$detail.name}</div>
+        <div class="tags">
+            {volist name="$detail['cate']" id="vo"}
+                {php}if (empty($vo['name']))continue;{/php}
+                <div class="label">
+                    <div class="item"><a href="javascript:void(0);">{$vo.name}</a></div>
+                </div>
+            {/volist}
+        </div>
+    </div>
+    <div class="action">
+        <a href="javascript:history.go(-1)" class="back">
+            <svg width="12" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 40">
+                <path d="M21.56 39.47a2 2 0 0 1-1.38-.56L.44 20 20.18 1.09A2.01 2.01 0 1 1 22.95 4L6.23 20l16.72 16a2 2 0 0 1-1.38 3.44z"
+                      fill="#fff"></path>
+            </svg>
+        </a>
+        <div id="showcollect">
+            {if !empty($collection)}
+            <a id="cancel_collection" class="btn gray">已收藏</a>
+            {else /}
+            <a id="add_collection" class="btn"><svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#fff" d="M20 8h-8V0H8v8H0v4h8v8h4v-8h8V8"></path></svg>收藏</a>
+            {/if}
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="content"}
+
+{//选项卡}
+<nav class="bm-tabs">
+    <div class="item">
+        <a class="active" id="btn_detail">详情</a>
+    </div>
+    <div class="item">
+        <a id="btn_chapter">选集</a>
+    </div>
+</nav>
+
+{//书籍信息}
+<div class="ac-box" id="book-info">
+    <article class="article">
+        <div class="head">
+            <div class="title">作品简介</div>
+        </div>
+        <div class="body">
+            {$detail.summary}
+        </div>
+        <div class="author">作者：{$detail.author.name}</div>
+    </article>
+    <div class="bar">
+        <div class="col" style="text-align: left"><i class="icon-hot"></i> 人气值 {$detail.readnum}</div>
+        <div class="col" style="text-align: center"><i class="icon-like"></i> {$detail.likenum}人已点赞</div>
+        <div class="col" style="text-align: right"><i class="icon-mark"></i> {$detail.collectnum}人已收藏</div>
+    </div>
+</div>
+
+{//选集}
+<div class="ac-box mb-tabar" id="book-chapters" style="display: none;margin-bottom: .03rem;">
+    <div class="ch">
+        <div class="title">
+            {if $detail.status==0}
+                连载中
+            {else /}
+                已完结
+            {/if}
+            <span class="small">{:date('Y-m-d',$detail['log_time'])}更新到&nbsp;{$detail.last_chapter}&nbsp;</span></div>
+    </div>
+    <div class="list" id="html_box">
+        {volist name="$detail['chapter']" id="chapter" key="key"}
+            {if $detail['free_type'] == 1 && $chapter['money'] > 0 && $key >= $detail['start_pay']}
+                {if in_array($chapter['id'],$user_buy_log)}
+                    <div {if $key>6}hidden{/if} class="item unlock">
+                        <a href="{:url('index/' . $module . '.chapter/show',['id'=>$chapter['id']])}" class="">
+                            <span>{$chapter.name}</span>
+                        </a>
+                    </div>
+                {else /}
+                    <div {if $key>6}hidden{/if} class="item lock">
+                        <a href="{:url('index/' . $module . '.chapter/show',['id'=>$chapter['id']])}" class="">
+                            <span>{$chapter.name}</span>
+                        </a>
+                    </div>
+                {/if}
+            {else /}
+                <div {if $key>6}hidden{/if} class="item">
+                    <a href="{:url('index/' . $module . '.chapter/show',['id'=>$chapter['id']])}" class="" style="text-align:center;">
+                        {$chapter.name}
+                    </a>
+                </div>
+            {/if}
+        {/volist}
+    </div>
+    <div class="action">
+        <a id="btn_show_all_chapter" class="btn show-all chapter_all">查看全部章节 <i class="icon-arrow"></i></a>
+    </div>
+</div>
+
+{//推荐书本}
+{include file="common/recommend"}
+
+{//打赏}
+{include file="common/reward"}
+
+{//评论}
+{include file="common/discus"}
+
+{//底部工具栏}
+{include file="common/toolbar"}
+
+{/block}

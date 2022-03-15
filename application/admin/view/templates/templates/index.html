@@ -1,0 +1,86 @@
+
+
+<div class="panel panel-default panel-intro">
+
+        <div class="alert alert-danger-light">
+            <i class="fa fa-info-circle"></i>创建模板会生成【项目/public/templates/模板类型/模板标识】、【项目/public/templates/asset/模板类型/模板标识】
+            asset是存放模板需要的静态资源，如css,js,图片等，addons、modules是存放模板文件。
+        <a href="https://www.fastadmin.net/store.html" target="_blank">如有使用问题和建议请访问fastadmin官方了解</a>
+        </div>
+
+        {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        {:build_toolbar('refresh')}
+
+                        <button type="button" id="plupload-template" class="btn btn-info plupload {:$auth->check('templates.templates/local')?'':'hide'}" data-url="templates/templates/local"
+                                data-mimetype="application/zip" data-multiple="false"><i class="fa fa-upload"></i>
+                           上传模板
+                        </button>
+
+                        <a href="templates/templates/add" class="btn btn-success btn-dialog {:$auth->check('templates.templates/add')?'':'hide'}" title="创建模板"><i class="fa fa-plus"></i> 创建模板</a>
+                        <a href="javascript:void(0);" data-url="templates/templates/reset" class="btn btn-danger btn-reset  {:$auth->check('templates.templates/reset')?'':'hide'} " title="一键还原"><i class="fa fa-refresh"></i> 一键还原</a>
+
+                        <!--<div class="btn-group">
+                            <a href="javascript:alert('未开放')" class="btn btn-info btn-switch active" data-type="local" data-url="addon/downloaded"><i
+                                    class="fa fa-laptop"></i> {:__('云端模板')}</a>
+                        </div>-->
+
+
+                    </div>
+                    <table id="table" class="table table-striped table-hover" width="100%">
+
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .example {
+        height:100%;position: relative;
+    }
+    .example > span {
+        position:absolute;left:15px;top:15px;
+    }
+</style>
+
+<script id="itemtpl" type="text/html">
+
+    <div class="col-sm-4 col-md-3">
+        <% var image ='https://cdn.fastadmin.net/uploads/addons/cms.png';%>
+        <% var preview_url = ""; %>
+        <%
+        if(item.can_use[0]&&item.can_use[0]['name']){
+            preview_url=item.module==1?'/'+item.can_use[0]['name']+'?preview=1&template='+item.name:'/addons/'+item.can_use[0]['name']+'?preview=1&template='+item.name
+        }else{
+            preview_url="javascript:alert('没有检测到适用的模块或插件');";
+        }
+        %>
+        <div class="thumbnail example">
+            <img src="<%=item.thumb?item.thumb:image%>" style="width:100%;" alt="<%=item.title%>">
+            <div class="caption">
+                <h4><%=item.module==1?'【模块】':'【插件】'%><%=item.title?item.title:"系统模板"%> <span class="text-red"><%=item.is_use?"使用中":""%></span></h4>
+                <p class="text-muted">介绍:<%=item.intro?item.intro:"无"%></p>
+                <p class="text-muted">作者:<%=item.author?item.author:"无"%> &nbsp;&nbsp 标识:<%=item.name%></p>
+                <p>
+                    <!--如果需要响应编辑或删除事件，可以给元素添加 btn-edit或btn-del的类和data-id这个属性值-->
+
+                    <a href="templates/templates/edit/name/<%=item.name%>/module/<%=item.module%>/title/<%=item.title%>" data-title="使用模板【<%=item.title%>】" class="btn btn-info  btn-dialog {:$auth->check('templates.templates/edit')?'':'hide'}" ><i class="fa fa-pencil"></i> 使用</a>
+                    <a href="templates/templates/config/name/<%=item.name%>/module/<%=item.module%>" data-title="模板配置【<%=item.title%>】"  class="btn-dialog btn btn-warning {:$auth->check('templates.templates/config')?'':'hide'} "   ><i class="fa fa-cog"></i> 配置</a>
+                    <a href="<%=preview_url%>" class="btn  btn-success " target="_blank" ><i class="fa fa-eye"></i> 预览</a>
+                    <a href="javascript:;" class="btn  btn-danger btn-del {:$auth->check('templates.templates/del')?'':'hide'}" data-url="templates/templates/del/name/<%=item.name%>/module/<%=item.module%>" data-id="<%=item.name%>" ><i class="fa fa-trash"></i> 删除</a>
+                    <a href="templates/templates/package/name/<%=item.name%>/module/<%=item.module%>" class="btn  btn-primary btn-dialog {:$auth->check('templates.templates/package')?'':'hide'} " title="打包" data-table-id="table" data-field-index="8" data-row-index="4" data-button-index="3"><i class="fa fa-download"></i> 打包</a>
+                </p>
+
+                <p class="text-muted"><i class="fa fa-eye"></i>提示 预览在url后缀加上：?preview=1&template=<%=item.name%></p>
+            </div>
+        </div>
+    </div>
+</script>
